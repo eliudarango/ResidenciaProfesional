@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RolController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::group(['middleware' => ['auth']], function () {
+    
+    Route::resource('roles',RolController::class);
+    Route::resource('usuarios',UsuarioController::class);
+    
+});
 
 Route::get('/', function () {
     return view('welcome');
