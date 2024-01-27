@@ -37,68 +37,77 @@
             </section>
         @endcan
         @can('ver-usuarios')
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">E-mail</th>
-                            <th scope="col">Rol</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($usuarios as $usuario)
-                            <tr>
-                                <td>{{ $usuario->id }}</td>
-                                <td>{{ $usuario->name }}</td>
-                                <td>{{ $usuario->email }}</td>
-                                <td>
-                                    @if (!empty($usuario->getRoleNames()))
-                                        @foreach ($usuario->getRoleNames() as $rolName)
-                                            {{ $rolName }}
-                                        @endforeach
-                                    @endif
-                                </td>
-                                <td>
-                                    @can('editar-usuarios')
-                                        <a href="{{ route('usuarios.edit', $usuario->id) }}" class="btn btn-info  btn-sm">Editar</a>
-                                    @endcan
-                                    @can('borrar-usuarios')
-                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#modal-{{ $usuario->id }}">Eliminar</button>
-                                    @endcan
-                                </td>
-                            </tr>
-                            <div class="modal fade" id="modal-{{ $usuario->id }}" tabindex="-1"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
+            <div class="row layout-top-spacing">
+
+                <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                    <div class="widget-content widget-content-area br-8">
+                        <div class="table-responsive">
+                            <table id="zero-config" class="table dt-table-hover" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">E-mail</th>
+                                        <th scope="col">Rol</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($usuarios as $usuario)
+                                        <tr>
+                                            <td>{{ $usuario->id }}</td>
+                                            <td>{{ $usuario->name }}</td>
+                                            <td>{{ $usuario->email }}</td>
+                                            <td>
+                                                @if (!empty($usuario->getRoleNames()))
+                                                    @foreach ($usuario->getRoleNames() as $rolName)
+                                                        {{ $rolName }}
+                                                    @endforeach
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @can('editar-usuarios')
+                                                    <a href="{{ route('usuarios.edit', $usuario->id) }}"
+                                                        class="btn btn-info  btn-sm">Editar</a>
+                                                @endcan
+                                                @can('borrar-usuarios')
+                                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#modal-{{ $usuario->id }}">Eliminar</button>
+                                                @endcan
+                                            </td>
+                                        </tr>
+                                        <div class="modal fade" id="modal-{{ $usuario->id }}" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Estas seguro de eliminar el usuario {{ $usuario->name }}?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form
+                                                            action="{{ route('usuarios.destroy', ['usuario' => $usuario->id]) }}"
+                                                            method="POST">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit" class="btn btn-success">Aceptar</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="modal-body">
-                                            Estas seguro de eliminar el usuario {{ $usuario->name }}?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <form action="{{ route('usuarios.destroy', ['usuario' => $usuario->id]) }}"
-                                                method="POST">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Cerrar</button>
-                                                <button type="submit" class="btn btn-success">Aceptar</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </tbody>
-                </table>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         @endcan
         <div class="pagination justify-content-end">

@@ -32,62 +32,71 @@
             </div>
         @endcan
         @can('ver-rol')
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <div class="row layout-top-spacing">
 
-                        @foreach ($roles as $role)
-                            <tr>
-                                <td>{{ $role->name }}</td>
+                <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                    <div class="widget-content widget-content-area br-8">
+                        <div class="table-responsive">
+                            <table id="zero-config" class="table dt-table-hover" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                                <td>
-                                    @can('editar-rol')
-                                        <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-info  btn-sm">Editar</a>
-                                    @endcan
+                                    @foreach ($roles as $role)
+                                        <tr>
+                                            <td>{{ $role->name }}</td>
 
-                                    @can('borrar-rol')
-                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#modal-{{ $role->id }}">Eliminar</button>
-                                    @endcan
+                                            <td>
+                                                @can('editar-rol')
+                                                    <a href="{{ route('roles.edit', $role->id) }}"
+                                                        class="btn btn-info  btn-sm">Editar</a>
+                                                @endcan
 
-                                </td>
-                            </tr>
+                                                @can('borrar-rol')
+                                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#modal-{{ $role->id }}">Eliminar</button>
+                                                @endcan
 
-                            <div class="modal fade" id="modal-{{ $role->id }}" tabindex="-1"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
+                                            </td>
+                                        </tr>
+
+                                        <div class="modal fade" id="modal-{{ $role->id }}" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Estas seguro de eliminar el rol {{ $role->name }}?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form action="{{ route('roles.destroy', ['role' => $role->id]) }}"
+                                                            method="POST">
+                                                            @method('DELETE')
+                                                            @csrf
+
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Cerrar</button>
+
+                                                            <button type="submit" class="btn btn-success">Aceptar</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="modal-body">
-                                            Estas seguro de eliminar el rol {{ $role->name }}?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <form action="{{ route('roles.destroy', ['role' => $role->id]) }}" method="POST">
-                                                @method('DELETE')
-                                                @csrf
-
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Cerrar</button>
-
-                                                <button type="submit" class="btn btn-success">Aceptar</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </tbody>
-                </table>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         @endcan
     </div>
