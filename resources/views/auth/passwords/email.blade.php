@@ -1,15 +1,11 @@
 @extends('layouts.app')
 
 @section('contenido')
-    <div class="auth-container d-flex">
-
-        <div class="container mx-auto align-self-center">
-
-            <div class="row">
-
-                <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-8 col-12 d-flex flex-column align-self-center mx-auto">
+    <div class="auth-container d-flex justify-content-center align-items-center vh-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-8 col-12">
                     <div class="card mt-3 mb-3">
-
                         <div class="card-body">
                             <div class="text-center">
                                 <img src="{{ asset('/Template/src/assets/img/logoTEC.png') }}" class="sidebar-logo"
@@ -30,6 +26,7 @@
 
                                 <div class="row mb-12">
                                     <div class="mb-3">
+                                        <p>Ingrese su correo electrónico para recuperar su cuenta</p>
                                         <label class="form-label">Correo Electronico:</label>
 
                                         <div class="col-md-12">
@@ -59,4 +56,5 @@
                 </div>
             </div>
         </div>
+    </div>
     @endsection

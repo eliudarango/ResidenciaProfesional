@@ -413,21 +413,25 @@
 
             <nav id="sidebar">
 
-                <div class="navbar-nav theme-brand flex-row  text-center">
-                    <div class="nav-logo">
+                <div class="navbar-nav theme-brand flex-row justify-content-between align-items-center">
+                    <div class="nav-logo" style="display: flex; flex-direction: column;">
                         <div class="nav-item theme-logo">
                             <a href="">
                                 <img src="{{ asset('/Template/src/assets/img/logoITO.png') }}" class="sidebar-logo"
-                                    alt="logo" style="width: 55px; height: auto;">
+                                    alt="logo" style="width: 60px; height: auto;">
                             </a>
                         </div>
 
-                        <div class="nav-item theme-text">
-                            <a href="./index.html" class="nav-link">D.D.A </a>
+                        <div class="nav-item theme-text text-center">
+                            <p class="nav-link" style="font-size: 11px !important;">
+                                <span>DEPARTAMENTO DE DESARROLLO</span><br>
+                                <span>ACADÉMICO ITO</span>
+
+                            </p>
                         </div>
 
                     </div>
-                    <div class="nav-item sidebar-toggle">
+                    <div class="nav-item sidebar-toggle" style="align-self: flex-start;">
                         <div class="btn-toggle sidebarCollapse">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -684,8 +688,8 @@
             <!--  BEGIN FOOTER  -->
             <div class="footer-wrapper">
                 <div class="footer-section f-section-1">
-                    <p class="">Copyright © <span class="dynamic-year">2024</span> <a target="_blank"
-                            >Instituto Tecnológico Oaxaca</a>, ITO.</p>
+                    <p class="">Copyright © <span class="dynamic-year">2024</span> <a target="_blank">Instituto
+                            Tecnológico Oaxaca</a>, ITO.</p>
                 </div>
             </div>
             <!--  END FOOTER  -->
