@@ -20,6 +20,16 @@
                     <li class="breadcrumb-item active">Registrar</li>
                 </ol>
             </nav>
+            @if (Session::has('success'))
+                <div class="alert alert-success">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    {{ $errors->first('error') }}
+                </div>
+            @endif
         </div><!-- End Page Title -->
 
         <div class="card custom-card">

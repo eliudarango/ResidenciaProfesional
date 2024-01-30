@@ -19,6 +19,16 @@
                     <li class="breadcrumb-item active">Roles</li>
                 </ol>
             </nav>
+            @if (Session::has('success'))
+                <div class="alert alert-success">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    {{ $errors->first('error') }}
+                </div>
+            @endif
         </div><!-- End Page Title -->
         <br>
         @can('crear-rol')
