@@ -217,7 +217,7 @@
 
                             <div class="drodpown-title notification mt-2">
                                 <h6 class="d-flex justify-content-between"><span
-                                        class="align-self-center">Notifications</span> <span
+                                        class="align-self-center">Notificaciones</span> <span
                                         class="badge badge-secondary">16 New</span></h6>
                             </div>
 
@@ -341,8 +341,8 @@
                                     &#x1F44B;
                                 </div>
                                 <div class="media-body">
-                                    <h5>Shaun Park</h5>
-                                    <p>Project Leader</p>
+                                    <h5>{{Auth::user()->name}}</h5>
+                                    <p>{{ implode(', ', auth()->user()->getRoleNames()->all()) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -353,7 +353,7 @@
                                     stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                     <circle cx="12" cy="7" r="4"></circle>
-                                </svg> <span>Profile</span>
+                                </svg> <span>Perfil</span>
                             </a>
                         </div>
                         <div class="dropdown-item">
@@ -418,7 +418,7 @@
                         <div class="nav-item theme-logo">
                             <a href="">
                                 <img src="{{ asset('/Template/src/assets/img/logoITO.png') }}" class="sidebar-logo"
-                                    alt="logo" style="width: 60px; height: auto;">
+                                    alt="logo" style="width: 52px; height: auto;">
                             </a>
                         </div>
 
@@ -445,8 +445,9 @@
                 </div>
                 <div class="shadow-bottom"></div>
                 <ul class="list-unstyled menu-categories" id="accordionExample">
-                    <li class="menu active">
-                        <a href="/" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+
+                    <li class="menu {{ (Request::is('home') ? 'active' : '') }}">
+                        <a href="/home" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -604,7 +605,7 @@
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                             </svg><span>ADMINISTRADOR</span></div>
                     </li>
-                    <li class="menu">
+                    <li class="menu {{ (Request::is('dashboard') ? 'active' : '') }}">
                         <a href="./widgets.html" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -619,7 +620,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="menu">
+                    <li class="menu {{ (Request::is('reportes') ? 'active' : '') }}">
                         <a href="#pages" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -656,10 +657,10 @@
                         </a>
                         <ul class="collapse submenu list-unstyled" id="authentication"
                             data-bs-parent="#accordionExample">
-                            <li>
+                            <li class = {{ (Request::is('usuarios') ? 'active' : '') }}>
                                 <a href="/usuarios"> Usuarios </a>
                             </li>
-                            <li>
+                            <li class = {{ (Request::is('roles') ? 'active' : '') }}>
                                 <a href="/roles"> Roles </a>
                             </li>
                         </ul>
