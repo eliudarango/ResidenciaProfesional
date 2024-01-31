@@ -1,3 +1,5 @@
+<!-- Sidebar y barra superior -->
+<!-- Estilos del tamplate -->
 <!DOCTYPE html>
 <html lang="es">
 
@@ -48,6 +50,7 @@
 </head>
 
 <body class="layout-boxed">
+<!-- Contenido con autenticación -->
 
     <!-- BEGIN LOADER -->
     <div id="load_screen">
@@ -74,7 +77,8 @@
             </a>
 
             <ul class="navbar-item flex-row ms-lg-auto ms-0">
-
+                
+                <!-- Cambio de tema light a dark -->
                 <li class="nav-item theme-toggle-item">
                     <a href="javascript:void(0);" class="nav-link theme-toggle">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -97,7 +101,7 @@
                         </svg>
                     </a>
                 </li>
-
+                <!-- Icono de notificaciones -->
                 <li class="nav-item dropdown notification-dropdown">
                     <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="notificationDropdown"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -117,7 +121,7 @@
                         </div>
                     </div>
                 </li>
-
+                <!-- Icono de usuario -->
                 <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
                     <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -133,7 +137,9 @@
                         <div class="user-profile-section">
                             <div class="media mx-auto">
                                 <div class="media-body">
+                                    <!-- Nombre del usuario -->
                                     <h5>{{ Auth::user()->name }}</h5>
+                                    <!-- Rol del usuario -->
                                     <p>{{ implode(', ',auth()->user()->getRoleNames()->all()) }}</p>
                                 </div>
                             </div>
@@ -148,6 +154,7 @@
                                 </svg> <span>Perfil</span>
                             </a>
                         </div>
+                        <!-- Button de cerrar sessión -->
                         <div class="dropdown-item">
                             <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
@@ -181,11 +188,12 @@
         <div class="sidebar-wrapper sidebar-theme">
 
             <nav id="sidebar">
-
+                <!-- Menu sidebar -->
                 <div class="navbar-nav theme-brand flex-row justify-content-between align-items-center">
                     <div class="nav-logo" style="display: flex; flex-direction: column;">
                         <div class="nav-item theme-logo">
                             <a href="">
+                                <!-- Imagen de logo del ITO -->
                                 <img src="{{ asset('/Template/src/assets/img/logoITO.png') }}" class="sidebar-logo"
                                     alt="logo" style="width: 52px; height: auto;">
                             </a>
@@ -193,6 +201,7 @@
 
                         <div class="nav-item theme-text text-center">
                             <p class="nav-link" style="font-size: 11px !important;">
+                                <!-- Titulo del departamento -->
                                 <span>DEPARTAMENTO DE DESARROLLO</span><br>
                                 <span>ACADÉMICO ITO</span>
 
@@ -214,7 +223,7 @@
                 </div>
                 <div class="shadow-bottom"></div>
                 <ul class="list-unstyled menu-categories" id="accordionExample">
-
+                    <!-- Button de inicio -->
                     <li class="menu {{ Request::is('home') ? 'active' : '' }}">
                         <a href="/home" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
@@ -229,6 +238,7 @@
 
                         </a>
                     </li>
+                    <!-- Button de perfil -->
                     <li class="menu">
                         <a href="#users" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
@@ -260,6 +270,7 @@
                             </li>
                         </ul>
                     </li>
+                    <!-- Button de inventario -->
 
                     <li class="menu">
                         <a href="#components" data-bs-toggle="collapse" aria-expanded="false"
@@ -299,6 +310,7 @@
 
                         </ul>
                     </li>
+                    <!-- Button de registros -->
 
                     <li class="menu">
                         <a href="#datatables" data-bs-toggle="collapse" aria-expanded="false"
@@ -336,6 +348,7 @@
                             </li>
                         </ul>
                     </li>
+                    <!-- Button de formularios -->
 
                     <li class="menu">
                         <a href="#forms" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -365,7 +378,7 @@
                             </li>
                         </ul>
                     </li>
-
+                    <!-- CONTENIDO DE ADMINISTRADOR -->
 
                     <li class="menu menu-heading">
                         <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -374,6 +387,7 @@
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                             </svg><span>ADMINISTRADOR</span></div>
                     </li>
+                    <!-- Button de dashboard -->
                     <li class="menu {{ Request::is('dashboard') ? 'active' : '' }}">
                         <a href="./widgets.html" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
@@ -389,6 +403,7 @@
                             </div>
                         </a>
                     </li>
+                    <!-- Button de reportes PDF -->
                     <li class="menu {{ Request::is('reportes') ? 'active' : '' }}">
                         <a href="#pages" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
@@ -402,6 +417,7 @@
                             </div>
                         </a>
                     </li>
+                    <!-- Button de permisos -->
                     <li class="menu">
                         <a href="#authentication" data-bs-toggle="collapse" aria-expanded="false"
                             class="dropdown-toggle">
@@ -441,6 +457,7 @@
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                             </svg><span>OPCIONES</span></div>
                     </li>
+                    <!-- Button de cerrar session -->
                     <li class="menu">
                         <a href="{{ route('logout') }}"
                             onclick="event.preventDefault();

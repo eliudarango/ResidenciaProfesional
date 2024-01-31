@@ -1,6 +1,8 @@
+<!-- Vista editar usuarios -->
 @extends('layouts.sidebar')
 
 @section('content')
+<!-- Estilos de card body -->
     <style>
         .custom-card {
             max-width: 700px;
@@ -20,6 +22,7 @@
                     <li class="breadcrumb-item active">Editar</li>
                 </ol>
             </nav>
+            <!-- Mensajes session -->
             @if (Session::has('success'))
                 <div class="alert alert-success">
                     {{ Session::get('success') }}
@@ -31,38 +34,44 @@
                 </div>
             @endif
         </div><!-- End Page Title -->
-
+        <!-- Card body -->
         <div class="card custom-card">
             <div class="card-body">
                 <h5 class="card-title">Editar usuario</h5>
-                <!-- Vertical Form -->
+                <!--Formulario -->
                 <form class="row g-3" action="{{ route('usuarios.update', $user->id) }}" method="POST">
                     @csrf
                     @method('PATCH')
                     <div class="col-12">
+                        <!-- Nombre de usuario -->
                         <label for="inputNanme4" class="form-label">Nombre completo </label>
                         <input type="text" class="form-control" name="name" value="{{ $user->name }}">
                     </div>
                     <div class="col-12">
+                        <!-- Correo electronico -->
                         <label for="inputEmail4" class="form-label">Email</label>
                         <input type="email" class="form-control"name="email" value="{{ $user->email }}">
                     </div>
                     <div class="col-12">
+                        <!-- Contraseña -->
                         <label for="inputPassword4" class="form-label">Contraseña</label>
                         <input type="password" class="form-control" name="password">
                     </div>
                     <div class="col-12">
+                        <!-- Confirmacion de contraseña -->
                         <label for="inputPassword4" class="form-label">Confirmar contraseña</label>
                         <input type="password" class="form-control" name="confirm-password">
                     </div>
                     <div class="col-12">
+                        <!-- Rol asignado -->
                         <div class="form-group">
                             <label for="inputPassword4" class="form-label">Rol</label>
                             {!! Form::select('roles[]', $roles, [], ['class' => 'form-select']) !!}
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <!-- Buttons -->
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                         <button type="reset" class="btn btn-secondary">Reset</button>
                     </div>
                 </form><!-- Vertical Form -->

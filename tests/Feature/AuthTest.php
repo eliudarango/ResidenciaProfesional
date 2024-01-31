@@ -1,17 +1,17 @@
 <?php
 
 namespace Tests\Feature;
-
+//Librerias
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
-
+//PRUEBAS DE TESTEO RESPECTO A LAS VISTAS DE AUTENTICACIÓN (AUTH)
 class AuthTest extends TestCase
 {
     use RefreshDatabase;
-
+    //Prueba de registrar usuarios con datos validos
     /** @test */
     public function test_usuario_puede_registrar_con_datos_validos()
     {
@@ -25,7 +25,7 @@ class AuthTest extends TestCase
         $response->assertRedirect('/home');
         $this->assertAuthenticated();
     }
-
+    //Prueba para registrar usuario con datos invalidos
     /** @test */
     public function test_usuario_no_puede_registrarse_con_datos_inválidos()
     {
@@ -39,7 +39,7 @@ class AuthTest extends TestCase
         $response->assertSessionHasErrors(['name', 'email']);
         $this->assertGuest();
     }
-
+    //Prueba para iniciar sesion con datos validos
     /** @test */
     public function test_usuario_puede_iniciarsesión_con_credenciales_validas()
     {
@@ -55,7 +55,7 @@ class AuthTest extends TestCase
         $response->assertRedirect('/home');
         $this->assertAuthenticatedAs($user);
     }
-
+    //Prueba para iniciar sesion con datos invalidos
     /** @test */
     public function test_usuario_no_puede_iniciarsesión_con_credenciales_inválidas()
     {
@@ -69,7 +69,7 @@ class AuthTest extends TestCase
         $response->assertSessionHasErrors('email');
         $this->assertGuest();
     }
-
+    //Prueba para iniciar sesion cuando el correo no esta registrado
     /** @test */
     public function test_usuario_no_puede_iniciarsesión_con_correo_correo_no_registrado()
     {
@@ -81,7 +81,7 @@ class AuthTest extends TestCase
         $response->assertSessionHasErrors('email');
         $this->assertGuest();
     }
-
+    //Prueba de que el usuario puede cerrar session
     /** @test */
     public function test_usuario_puede_cerrarsesión()
     {

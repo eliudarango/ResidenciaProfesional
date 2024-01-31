@@ -1,6 +1,8 @@
+<!-- Vista principal usuarios -->
 @extends('layouts.sidebar')
 
 @section('content')
+<!-- Estilos card body -->
     <style>
         .custom-card {
             max-width: 700px;
@@ -19,6 +21,7 @@
                     <li class="breadcrumb-item active">Usuarios</li>
                 </ol>
             </nav>
+            <!-- Mensaje session -->
             @if (Session::has('success'))
                 <div class="alert alert-success">
                     {{ Session::get('success') }}
@@ -35,7 +38,7 @@
             <section class="section">
                 <div class="row">
                     <div class="col-lg-4">
-
+                        <!-- Card body agregar usuario -->
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Agregar usuario</h5>
@@ -46,7 +49,7 @@
                     </div>
             </section>
         @endcan
-        @can('ver-usuarios')
+        @can('ver-usuarios')<!-- Permiso ver-usuarios -->
             <div class="row layout-top-spacing">
 
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
@@ -55,6 +58,7 @@
                             <table id="zero-config" class="table dt-table-hover" style="width:100%">
                                 <thead>
                                     <tr>
+                                        <!-- Nombre de columnas -->
                                         <th scope="col">#</th>
                                         <th scope="col">Nombre</th>
                                         <th scope="col">E-mail</th>
@@ -63,12 +67,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <!-- Datos de usuarios -->
                                     @foreach ($usuarios as $usuario)
                                         <tr>
-                                            <td>{{ $usuario->id }}</td>
-                                            <td>{{ $usuario->name }}</td>
-                                            <td>{{ $usuario->email }}</td>
-                                            <td>
+                                            <td>{{ $usuario->id }}</td><!-- ID usuario -->
+                                            <td>{{ $usuario->name }}</td><!-- Nombre de usuario -->
+                                            <td>{{ $usuario->email }}</td><!-- Correo de usuario -->
+                                            <td><!-- Rol de usuario -->
                                                 @if (!empty($usuario->getRoleNames()))
                                                     @foreach ($usuario->getRoleNames() as $rolName)
                                                         {{ $rolName }}
@@ -76,11 +81,12 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @can('editar-usuarios')
+                                                <!-- Acciones -->
+                                                @can('editar-usuarios')<!-- Permiso editar-usuarios -->
                                                     <a href="{{ route('usuarios.edit', $usuario->id) }}"
                                                         class="btn btn-info  btn-sm">Editar</a>
                                                 @endcan
-                                                @can('borrar-usuarios')
+                                                @can('borrar-usuarios')<!-- Permiso borrar-usuarios -->
                                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                                         data-bs-target="#modal-{{ $usuario->id }}">Eliminar</button>
                                                 @endcan
@@ -95,6 +101,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
+                                                    <!-- Ventana emergente de eliminar usuario -->
                                                     <div class="modal-body">
                                                         Estas seguro de eliminar el usuario {{ $usuario->name }}?
                                                     </div>

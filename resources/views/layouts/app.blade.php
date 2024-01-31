@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- Estilos del template -->
 <html lang="es">
 
 <head>
@@ -36,6 +37,7 @@
 </head>
 
 <body>
+    <!-- Contenido de vistas sin autenticación -->
     @yield('contenido')
 </body>
 

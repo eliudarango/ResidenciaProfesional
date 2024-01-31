@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+//Librerias
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Session;
 
 
 class UsuarioController extends Controller
 {
+    //Middleware, permisos del controlador usuario
     function _construct()
     {
         $this->middleware('permission:ver-usuarios|crear-usuarios|editar-usuarios|borrar-usuarios', ['only' => ['index']]);
@@ -21,31 +21,33 @@ class UsuarioController extends Controller
         $this->middleware('permission:editar-usuarios', ['only' => ['edit', 'update']]);
         $this->middleware('permission:borrar-usuarios', ['only' => ['destroy']]);
     }
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-        $usuarios = User::paginate(5);
-        return view('usuarios.index', compact('usuarios'));
-
+        try {
+            $usuarios = User::paginate(5);
+            return view('usuarios.index', compact('usuarios'));
+        } catch (\Throwable $th) {
+        }
     }
-
     /**
      * Show the form for creating a new resource.
      */
+    //Metodo para usuario usuario
     public function create()
     {
-        //
-        $roles = Role::pluck('name', 'name')->all();
-        return view('usuarios.agregar', compact('roles'));
+        try {
+            $roles = Role::pluck('name', 'name')->all();
+            return view('usuarios.agregar', compact('roles'));
+        } catch (\Throwable $th) {
+        }
     }
-
     /**
      * Store a newly created resource in storage.
      */
+    //Metodo de vista de agregar usuario
     public function store(Request $request)
     {
         try {
@@ -65,7 +67,6 @@ class UsuarioController extends Controller
             return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al agregar el usuario']);
         }
     }
-
     /**
      * Display the specified resource.
      */
@@ -77,51 +78,59 @@ class UsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    //Metodo para editar usuario
     public function edit(string $id)
     {
-        //
-        $user = User::find($id);
-        $roles = Role::pluck('name', 'name')->all();
-        $userRole = $user->roles->pluck('name', 'name')->all();
-        return view('usuarios.editar', compact('user', 'roles', 'userRole'));
+        try {
+            $user = User::find($id);
+            $roles = Role::pluck('name', 'name')->all();
+            $userRole = $user->roles->pluck('name', 'name')->all();
+            return view('usuarios.editar', compact('user', 'roles', 'userRole'));
+        } catch (\Throwable $th) {
+        }
     }
-
     /**
      * Update the specified resource in storage.
      */
+    //Metodo para modificar usuario
     public function update(Request $request, string $id)
     {
-        //
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required | email |unique:users,email,' . $id,
-            'password' => 'same:confirm-password',
-            'roles' => 'required'
+        try {
+            $this->validate($request, [
+                'name' => 'required',
+                'email' => 'required | email |unique:users,email,' . $id,
+                'password' => 'same:confirm-password',
+                'roles' => 'required'
 
-        ]);
-        $input = $request->all();
+            ]);
+            $input = $request->all();
 
-        if (!empty($input['password'])) {
-            $input['password'] = Hash::make($input['password']);
-        } else {
-            $input = Arr::except($input, array('password'));
+            if (!empty($input['password'])) {
+                $input['password'] = Hash::make($input['password']);
+            } else {
+                $input = Arr::except($input, array('password'));
+            }
+            $user = User::find($id);
+            $user->update($input);
+            DB::table('model_has_roles')->where('model_id', $id)->delete();
+            $user->assignRole($request->input('roles'));
+            return redirect()->route('usuarios.index')->with('success', 'Usuario editado correctamente');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al editar al usuario']);
         }
-        $user = User::find($id);
-        $user->update($input);
-        DB::table('model_has_roles')->where('model_id', $id)->delete();
-
-
-        $user->assignRole($request->input('roles'));
-        return redirect()->route('usuarios.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
+    //Metodo para eliminar usuario
     public function destroy(string $id)
     {
-        //
-        User::find($id)->delete();
-        return redirect()->route('usuarios.index');
+        try {
+            User::find($id)->delete();
+            return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado correctamente');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al eliminar al usuario']);
+        }
     }
 }

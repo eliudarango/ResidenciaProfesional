@@ -1,6 +1,8 @@
+<!-- Vista principal roles -->
 @extends('layouts.sidebar')
 
 @section('content')
+<!-- Estilos de card body -->
     <style>
         .custom-card {
             max-width: 700px;
@@ -19,6 +21,7 @@
                     <li class="breadcrumb-item active">Roles</li>
                 </ol>
             </nav>
+            <!-- Mensajes session -->
             @if (Session::has('success'))
                 <div class="alert alert-success">
                     {{ Session::get('success') }}
@@ -33,6 +36,7 @@
         <br>
         @can('crear-rol')
             <div class="col-lg-4">
+                <!-- Card body agregar rol -->
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Crear rol</h5>
@@ -46,10 +50,12 @@
 
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                     <div class="widget-content widget-content-area br-8">
+                        <!-- Tabla de  roles -->
                         <div class="table-responsive">
                             <table id="zero-config" class="table dt-table-hover" style="width:100%">
                                 <thead>
                                     <tr>
+                                        <!-- Nombre de columnas -->
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Acciones</th>
                                     </tr>
@@ -83,6 +89,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
+                                                    <!-- Ventana emergente eliminar rol -->
                                                     <div class="modal-body">
                                                         Estas seguro de eliminar el rol {{ $role->name }}?
                                                     </div>
