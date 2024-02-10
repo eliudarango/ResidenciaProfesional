@@ -1,8 +1,8 @@
-<!-- Vista principal roles -->
+<!-- Vista principal usuarios -->
 @extends('layouts.sidebar')
 
 @section('content')
-<!-- Estilos de card body -->
+<!-- Estilos card body -->
     <style>
         .custom-card {
             max-width: 700px;
@@ -14,14 +14,14 @@
     <div id="main" class="main">
 
         <div class="page-meta">
-            <h5>Roles</h5>
+            <h5>Usuarios</h5>
             <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active">Roles</li>
+                    <li class="breadcrumb-item active">Inventarios</li>
                 </ol>
             </nav>
-            <!-- Mensajes session -->
+            <!-- Mensaje session -->
             @if (Session::has('success'))
                 <div class="alert alert-success">
                     {{ Session::get('success') }}
@@ -32,55 +32,61 @@
                     {{ $errors->first('error') }}
                 </div>
             @endif
-        </div><!-- End Page Title -->
+        </div>
         <br>
-        @can('crear-rol')
-            <div class="col-lg-4">
-                <!-- Card body agregar rol -->
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Crear rol</h5>
-                        <a href="{{ route('roles.create') }}" class="btn btn-warning">Nuevo</a>
+        @can('crear-usuarios')
+            <section class="section">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <!-- Card body agregar usuario -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Agregar inventario</h5>
+                                <a href="{{ route('inventarios.create') }}" class="btn btn-warning">Nuevo</a>
+                            </div>
+                        </div>
+
                     </div>
-                </div>
-            </div>
+            </section>
         @endcan
-        @can('ver-rol')
+        @can('ver-usuarios')<!-- Permiso ver-usuarios -->
             <div class="row layout-top-spacing">
 
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                     <div class="widget-content widget-content-area br-8">
-                        <!-- Tabla de  roles -->
                         <div class="table-responsive">
                             <table id="zero-config" class="table dt-table-hover" style="width:100%">
                                 <thead>
                                     <tr>
                                         <!-- Nombre de columnas -->
-                                        <th scope="col">Nombre</th>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Descripcion</th>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col">Mantenimiento</th>
                                         <th scope="col">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    @foreach ($roles as $role)
+                                    <!-- Datos de inventarios -->
+                                    @foreach ($inventarios as $inventario)
                                         <tr>
-                                            <td>{{ $role->name }}</td>
-
+                                            <td>{{ $inventario->id }}</td><!-- ID usuario -->
+                                            <td>{{ $inventario->descripcion }}</td><!-- Nombre de usuario -->
+                                            <td>{{ $inventario->estado }}</td><!-- Correo de usuario -->
+                                            <td>{{ $inventario->mantenimiento }}</td><!-- Correo de usuario -->
                                             <td>
-                                                @can('editar-rol')
-                                                    <a href="{{ route('roles.edit', $role->id) }}"
+                                                <!-- Acciones -->
+                                                @can('editar-inventarios')<!-- Permiso editar-usuarios -->
+                                                    <a href="{{ route('inventarios.edit', $inventario->id) }}"
                                                         class="btn btn-info  btn-sm">Editar</a>
                                                 @endcan
-
-                                                @can('borrar-rol')
+                                                @can('borrar-inventarios')<!-- Permiso borrar-usuarios -->
                                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                        data-bs-target="#modal-{{ $role->id }}">Eliminar</button>
+                                                        data-bs-target="#modal-{{ $inventario->id }}">Eliminar</button>
                                                 @endcan
-
                                             </td>
                                         </tr>
-
-                                        <div class="modal fade" id="modal-{{ $role->id }}" tabindex="-1"
+                                        <div class="modal fade" id="modal-{{ $inventario->id }}" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -89,19 +95,18 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
-                                                    <!-- Ventana emergente eliminar rol -->
+                                                    <!-- Ventana emergente de eliminar usuario -->
                                                     <div class="modal-body">
-                                                        Estas seguro de eliminar el rol {{ $role->name }}?
+                                                        Estas seguro de eliminar el inventario {{ $inventario->descripcion }}?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <form action="{{ route('roles.destroy', ['role' => $role->id]) }}"
+                                                        <form
+                                                            action="{{ route('inventarios.destroy', ['inventario' => $inventario->id]) }}"
                                                             method="POST">
                                                             @method('DELETE')
                                                             @csrf
-
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Cerrar</button>
-
                                                             <button type="submit" class="btn btn-success">Aceptar</button>
                                                         </form>
                                                     </div>
@@ -116,5 +121,8 @@
                 </div>
             </div>
         @endcan
+        <div class="pagination justify-content-end">
+            {!! $inventarios->links() !!}
+        </div>
     </div>
 @endsection

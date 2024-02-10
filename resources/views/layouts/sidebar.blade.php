@@ -224,8 +224,8 @@
                 <div class="shadow-bottom"></div>
                 <ul class="list-unstyled menu-categories" id="accordionExample">
                     <!-- Button de inicio -->
-                    <li class="menu {{ Request::is('home') ? 'active' : '' }}">
-                        <a href="/home" aria-expanded="false" class="dropdown-toggle">
+                    <li class="menu {{ Request::is('/') ? 'active' : '' }}">
+                        <a href="/" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"

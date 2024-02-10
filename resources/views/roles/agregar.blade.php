@@ -17,7 +17,7 @@
             <h5>Roles</h5>
             <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
                     <li class="breadcrumb-item active"><a href="/roles">Roles</a></li>
                     <li class="breadcrumb-item active">Registrar</li>
                 </ol>

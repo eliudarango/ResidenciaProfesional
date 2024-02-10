@@ -1,8 +1,8 @@
-<!-- Vista editar roles -->
+<!-- Vista editar usuarios -->
 @extends('layouts.sidebar')
 
 @section('content')
-<!-- Estilos de card body -->
+    <!-- Estilos de card body -->
     <style>
         .custom-card {
             max-width: 700px;
@@ -14,11 +14,11 @@
     <div id="main" class="main">
 
         <div class="page-meta">
-            <h5>Roles</h5>
+            <h5>Usuarios</h5>
             <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="/roles">Roles</a></li>
+                    <li class="breadcrumb-item active"><a href="/usuarios">Inventarios</a></li>
                     <li class="breadcrumb-item active">Editar</li>
                 </ol>
             </nav>
@@ -37,29 +37,32 @@
         <!-- Card body -->
         <div class="card custom-card">
             <div class="card-body">
-                <h5 class="card-title">Editar rol</h5>
-                <!-- Formulario -->
-                <form class="row g-3" action="{{ route('roles.update', $role->id) }}" method="POST">
-                    @method('PATCH')
+                <h5 class="card-title">Editar inventario</h5>
+                <!--Formulario -->
+                <form class="row g-3" action="{{ route('inventarios.update', $inventario->id) }}" method="POST">
                     @csrf
-                    <!-- Nombre del rol -->
+                    @method('PATCH')
                     <div class="col-12">
-                        <label for="inputNanme4" class="form-label">Nombre del rol </label>
-                        <input type="text" class="form-control" name="name" value="{{ $role->name }}">
+                        <!-- Descripcion -->
+                        <label for="inputDescripcion4" class="form-label">Descripcion </label>
+                        <input type="text" class="form-control" name="descripcion" value="{{ $inventario->descripcion }}">
                     </div>
                     <div class="col-12">
-                        <!-- Checkbox de  permisos -->
-                        <div class="form-group">
-                            <label for="inputPassword4" class="form-label">Permisos del rol </label>
-                            <br />
-                            @foreach ($permission as $value)
-                                <label class="form-check-label">
-                                    {{ Form::checkbox('permission[]', $value->name, in_array($value->id, $rolePermissions) ? true : false) }}
-
-                                    {{ $value->name }}
-                                </label>
-                                <br />
-                            @endforeach
+                        <!-- Estado -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" {{ $inventario->estado ? 'checked' : '' }} id="estado" name="estado" value="1">
+                            <label class="form-check-label" for="estado">
+                                Estado
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <!-- Mantenimiento -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" {{ $inventario->mantenimiento ? 'checked' : '' }} id="mantenimiento" name="mantenimiento" value="1">
+                            <label class="form-check-label" for="mantenimiento">
+                                Mantenimiento
+                            </label>
                         </div>
                     </div>
                     <div class="text-center">

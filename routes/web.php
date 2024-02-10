@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 //Llamada a controladores
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -16,22 +17,21 @@ use App\Http\Controllers\HomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-//Ruta vacia /
-Route::get('/', function () {
-    return view('auth.login');
-});
+
 //Rutas de autenticación
 Auth::routes();
 //Rutas de middleware
 Route::group(['middleware' => ['auth']], function () {
-    //Ruta inicio home
-    Route::resource('home', HomeController::class);
     //Ruta de roles
     Route::resource('roles', RolController::class);
     //Ruta de usuarios
     Route::resource('usuarios', UsuarioController::class);
+     //Ruta de inventarios
+     Route::resource('inventarios', InventarioController::class);
 
 });
+//Ruta de home o inicio
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 
