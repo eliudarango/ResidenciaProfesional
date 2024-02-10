@@ -18,16 +18,22 @@ class SeederTablaPermisos extends Seeder
     {
         $permisos=[
             //tabla usuarios
-            'ver-usuarios',
-            'crear-usuarios',
-            'editar-usuarios',
-            'borrar-usuarios',
+            'Ver-usuarios',
+            'Crear-usuarios',
+            'Editar-usuarios',
+            'Borrar-usuarios',
 
             //tabla roles
-            'ver-rol',
-            'crear-rol',
-            'editar-rol',
-            'borrar-rol',
+            'Ver-rol',
+            'Crear-rol',
+            'Editar-rol',
+            'Borrar-rol',
+
+            //tabla inventario
+            'Ver-inventario',
+            'Crear-inventario',
+            'Editar-inventario',
+            'Borrar-inventario',
             
         ];
         foreach ($permisos as $permiso) {

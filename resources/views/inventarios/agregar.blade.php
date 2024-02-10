@@ -1,4 +1,4 @@
-<!-- Vista agregar usuarios -->
+<!-- Vista agregar inventarios -->
 @extends('layouts.sidebar')
 
 @section('content')

@@ -34,7 +34,7 @@
             @endif
         </div>
         <br>
-        @can('crear-usuarios')
+        @can('Crear-usuarios')<!-- Permiso crear-usuarios -->
             <section class="section">
                 <div class="row">
                     <div class="col-lg-4">
@@ -49,7 +49,7 @@
                     </div>
             </section>
         @endcan
-        @can('ver-usuarios')<!-- Permiso ver-usuarios -->
+        @can('Ver-usuarios')<!-- Permiso ver-usuarios -->
             <div class="row layout-top-spacing">
 
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
@@ -82,11 +82,11 @@
                                             </td>
                                             <td>
                                                 <!-- Acciones -->
-                                                @can('editar-usuarios')<!-- Permiso editar-usuarios -->
+                                                @can('Editar-usuarios')<!-- Permiso editar-usuarios -->
                                                     <a href="{{ route('usuarios.edit', $usuario->id) }}"
                                                         class="btn btn-info  btn-sm">Editar</a>
                                                 @endcan
-                                                @can('borrar-usuarios')<!-- Permiso borrar-usuarios -->
+                                                @can('Borrar-usuarios')<!-- Permiso borrar-usuarios -->
                                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                                         data-bs-target="#modal-{{ $usuario->id }}">Eliminar</button>
                                                 @endcan

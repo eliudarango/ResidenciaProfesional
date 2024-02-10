@@ -14,10 +14,10 @@ class RolController extends Controller
     //Middleware, permisos del controlador Rol
     function _construct()
     {
-        $this->middleware('permission:ver-rol|crear-rol|editar-rol|borrar-rol', ['only' => ['index']]);
-        $this->middleware('permission:crear-rol', ['only' => ['create', 'store']]);
-        $this->middleware('permission:editar-rol', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:borrar-rol', ['only' => ['destroy']]);
+        $this->middleware('permission:Ver-rol|Crear-rol|Editar-rol|Borrar-rol', ['only' => ['index']]);
+        $this->middleware('permission:Crear-rol', ['only' => ['create', 'store']]);
+        $this->middleware('permission:Editar-rol', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:Borrar-rol', ['only' => ['destroy']]);
     }
 
     /**

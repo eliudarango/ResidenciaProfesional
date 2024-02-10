@@ -34,7 +34,7 @@
             @endif
         </div><!-- End Page Title -->
         <br>
-        @can('crear-rol')
+        @can('Crear-rol')<!-- Permiso crear-roles -->
             <div class="col-lg-4">
                 <!-- Card body agregar rol -->
                 <div class="card">
@@ -45,7 +45,7 @@
                 </div>
             </div>
         @endcan
-        @can('ver-rol')
+        @can('Ver-rol')
             <div class="row layout-top-spacing">
 
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
@@ -67,12 +67,12 @@
                                             <td>{{ $role->name }}</td>
 
                                             <td>
-                                                @can('editar-rol')
+                                                @can('Editar-rol')
                                                     <a href="{{ route('roles.edit', $role->id) }}"
                                                         class="btn btn-info  btn-sm">Editar</a>
                                                 @endcan
 
-                                                @can('borrar-rol')
+                                                @can('Borrar-rol')
                                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                                         data-bs-target="#modal-{{ $role->id }}">Eliminar</button>
                                                 @endcan

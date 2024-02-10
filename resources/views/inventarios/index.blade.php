@@ -1,4 +1,4 @@
-<!-- Vista principal usuarios -->
+<!-- Vista principal inventarios -->
 @extends('layouts.sidebar')
 
 @section('content')
@@ -34,11 +34,11 @@
             @endif
         </div>
         <br>
-        @can('crear-usuarios')
+        @can('Crear-inventario')<!-- Permiso crear-inventarios -->
             <section class="section">
                 <div class="row">
                     <div class="col-lg-4">
-                        <!-- Card body agregar usuario -->
+                        <!-- Card body agregar inventario -->
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Agregar inventario</h5>
@@ -49,7 +49,7 @@
                     </div>
             </section>
         @endcan
-        @can('ver-usuarios')<!-- Permiso ver-usuarios -->
+        @can('Ver-inventario')<!-- Permiso ver-inventarios -->
             <div class="row layout-top-spacing">
 
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
@@ -70,17 +70,17 @@
                                     <!-- Datos de inventarios -->
                                     @foreach ($inventarios as $inventario)
                                         <tr>
-                                            <td>{{ $inventario->id }}</td><!-- ID usuario -->
-                                            <td>{{ $inventario->descripcion }}</td><!-- Nombre de usuario -->
-                                            <td>{{ $inventario->estado }}</td><!-- Correo de usuario -->
-                                            <td>{{ $inventario->mantenimiento }}</td><!-- Correo de usuario -->
+                                            <td>{{ $inventario->id }}</td><!-- ID inventario -->
+                                            <td>{{ $inventario->descripcion }}</td><!-- descripcion -->
+                                            <td>{{ $inventario->estado }}</td><!-- estado -->
+                                            <td>{{ $inventario->mantenimiento }}</td><!-- mantenimiento -->
                                             <td>
                                                 <!-- Acciones -->
-                                                @can('editar-inventarios')<!-- Permiso editar-usuarios -->
+                                                @can('Editar-inventario')<!-- Permiso editar-inventarios -->
                                                     <a href="{{ route('inventarios.edit', $inventario->id) }}"
                                                         class="btn btn-info  btn-sm">Editar</a>
                                                 @endcan
-                                                @can('borrar-inventarios')<!-- Permiso borrar-usuarios -->
+                                                @can('Borrar-inventario')<!-- Permiso borrar-inventarios -->
                                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                                         data-bs-target="#modal-{{ $inventario->id }}">Eliminar</button>
                                                 @endcan
@@ -95,7 +95,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
-                                                    <!-- Ventana emergente de eliminar usuario -->
+                                                    <!-- Ventana emergente de eliminar inventario -->
                                                     <div class="modal-body">
                                                         Estas seguro de eliminar el inventario {{ $inventario->descripcion }}?
                                                     </div>

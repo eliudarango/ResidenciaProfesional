@@ -7,45 +7,58 @@ use Illuminate\Http\Request;
 use App\Models\Inventario;
 
 class InventarioController extends Controller
-{   
-    
+{
+
     //Middleware, permisos del controlador Inventario
     function _construct()
     {
-        $this->middleware('permission:ver-inventario|crear-inventario|editar-inventario|borrar-inventario', ['only' => ['index']]);
-        $this->middleware('permission:crear-inventario', ['only' => ['create', 'store']]);
-        $this->middleware('permission:editar-inventario', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:borrar-inventario', ['only' => ['destroy']]);
+        $this->middleware('permission:Ver-inventario|Crear-inventario|Editar-inventario|Borrar-inventario', ['only' => ['index']]);
+        $this->middleware('permission:Crear-inventario', ['only' => ['create', 'store']]);
+        $this->middleware('permission:Editar-inventario', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:Borrar-inventario', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
      */
+    //Metodo para retornar vista inventario
     public function index()
     {
-        $inventarios = Inventario::paginate(5);
-        return view('inventarios.index',compact('inventarios'));
+        try {
+            $inventarios = Inventario::paginate(5);
+            return view('inventarios.index', compact('inventarios'));
+        } catch (\Throwable $th) {
+        }
     }
 
     /**
      * Show the form for creating a new resource.
      */
+    //Metodo para retonar vista de agregar inventario
     public function create()
     {
-       return view('inventarios.agregar');
+        try {
+            return view('inventarios.agregar');
+        } catch (\Throwable $th) {
+        }
     }
 
     /**
      * Store a newly created resource in storage.
      */
+    //Metodo para agregar inventario
     public function store(Request $request)
     {
-        request()->validate([
-            'descripcion'=>'required',
-            'estado',
-            'mantenimiento'
-        ]);
-        Inventario::create($request->all());
-        return redirect()->route('inventarios.index');
+        try {
+            request()->validate([
+                'descripcion' => 'required',
+                'estado',
+                'mantenimiento'
+            ]);
+            Inventario::create($request->all());
+            return redirect()->route('inventarios.index');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al agregar el inventario']);
+        }
 
     }
 
@@ -60,31 +73,45 @@ class InventarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    //Metodo para retornar vista de editar inventario
     public function edit(Inventario $inventario)
     {
-        return view('inventarios.editar',compact('inventario'));
+        try {
+            return view('inventarios.editar', compact('inventario'));
+        } catch (\Throwable $th) {
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
+    //Metodo para actualizar inventario
     public function update(Request $request, Inventario $inventario)
     {
-        request()->validate([
-            'descripcion'=>'required',
-            'estado',
-            'mantenimiento'
-        ]);
-        $inventario->update($request->all());
-        return redirect()->route('inventarios.index');
+        try {
+            request()->validate([
+                'descripcion' => 'required',
+                'estado',
+                'mantenimiento'
+            ]);
+            $inventario->update($request->all());
+            return redirect()->route('inventarios.index');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al editar el inventario']);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
+    //Metodo para eliminar inventario
     public function destroy(Inventario $inventario)
     {
-        $inventario->delete();
-        return redirect()->route('inventarios.index');
+        try {
+            $inventario->delete();
+            return redirect()->route('inventarios.index');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al eliminar el inventario']);
+        }
     }
 }

@@ -16,10 +16,10 @@ class UsuarioController extends Controller
     //Middleware, permisos del controlador usuario
     function _construct()
     {
-        $this->middleware('permission:ver-usuarios|crear-usuarios|editar-usuarios|borrar-usuarios', ['only' => ['index']]);
-        $this->middleware('permission:crear-usuarios', ['only' => ['create', 'store']]);
-        $this->middleware('permission:editar-usuarios', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:borrar-usuarios', ['only' => ['destroy']]);
+        $this->middleware('permission:Ver-usuarios|Crear-usuarios|Editar-usuarios|Borrar-usuarios', ['only' => ['index']]);
+        $this->middleware('permission:Crear-usuarios', ['only' => ['create', 'store']]);
+        $this->middleware('permission:Editar-usuarios', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:Borrar-usuarios', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
