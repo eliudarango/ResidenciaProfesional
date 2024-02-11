@@ -9,7 +9,9 @@ class Inventario extends Model
 {
     use HasFactory;
     protected $fillable = [
+        "tipo",
         'descripcion',
+        'numero_serie',
         'estado',
         'mantenimiento',
         

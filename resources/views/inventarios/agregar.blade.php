@@ -14,11 +14,11 @@
     <div id="main" class="main">
 
         <div class="page-meta">
-            <h5>Usuarios</h5>
+            <h5>Inventario</h5>
             <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="/usuarios">Inventarios</a></li>
+                    <li class="breadcrumb-item active"><a href="/usuarios">Inventario</a></li>
                     <li class="breadcrumb-item active">Registrar</li>
                 </ol>
             </nav>
@@ -42,9 +42,19 @@
                 <form class="row g-3" action="{{ route('inventarios.store') }}" method="POST">
                     @csrf
                     <div class="col-12">
+                        <!-- Tipo -->
+                        <label for="inputTipo4" class="form-label">Tipo</label>
+                        <input type="text" class="form-control" name="tipo">
+                    </div>
+                    <div class="col-12">
                         <!-- Descripcion -->
                         <label for="inputDescripcion4" class="form-label">Descripcion </label>
                         <input type="text" class="form-control" name="descripcion">
+                    </div>
+                    <div class="col-12">
+                        <!-- Numero de serie-->
+                        <label for="inputNumeroserie4" class="form-label">Numero de serie </label>
+                        <input type="text" class="form-control" name="numero_serie">
                     </div>
                     <div class="col-12">
                         <!-- Estado -->

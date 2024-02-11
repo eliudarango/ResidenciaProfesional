@@ -14,11 +14,11 @@
     <div id="main" class="main">
 
         <div class="page-meta">
-            <h5>Usuarios</h5>
+            <h5>Inventario</h5>
             <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="/usuarios">Inventarios</a></li>
+                    <li class="breadcrumb-item active"><a href="/usuarios">Inventario</a></li>
                     <li class="breadcrumb-item active">Editar</li>
                 </ol>
             </nav>
@@ -43,28 +43,46 @@
                     @csrf
                     @method('PATCH')
                     <div class="col-12">
+                        <!-- Tipo -->
+                        <label for="inputTipo4" class="form-label">Tipo </label>
+                        <input type="text" class="form-control" name="tipo" value="{{ $inventario->tipo }}">
+                    </div>
+                    <div class="col-12">
                         <!-- Descripcion -->
                         <label for="inputDescripcion4" class="form-label">Descripcion </label>
                         <input type="text" class="form-control" name="descripcion" value="{{ $inventario->descripcion }}">
                     </div>
                     <div class="col-12">
-                        <!-- Estado -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" {{ $inventario->estado ? 'checked' : '' }} id="estado" name="estado" value="1">
-                            <label class="form-check-label" for="estado">
-                                Estado
-                            </label>
-                        </div>
+                        <!-- Numero serie -->
+                        <label for="inputnumeroserie4" class="form-label">Numero de serie </label>
+                        <input type="text" class="form-control" name="numero_serie" value="{{ $inventario->numero_serie }}">
                     </div>
                     <div class="col-12">
-                        <!-- Mantenimiento -->
+                        <!-- Estado -->
+                        <label class="form-label">Estado</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" {{ $inventario->mantenimiento ? 'checked' : '' }} id="mantenimiento" name="mantenimiento" value="1">
-                            <label class="form-check-label" for="mantenimiento">
-                                Mantenimiento
-                            </label>
+                            <input class="form-check-input" type="radio" name="estado" id="estado_activo" value="1" {{ $inventario->estado == 1 ? 'checked' : '' }}>
+                            <label class="form-check-label" for="estado_activo">Disponible</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="estado" id="estado_inactivo" value="0" {{ $inventario->estado == 0 ? 'checked' : '' }}>
+                            <label class="form-check-label" for="estado_inactivo">No disponible</label>
                         </div>
                     </div>
+                    
+                    <div class="col-12">
+                        <!-- Mantenimiento -->
+                        <label class="form-label">Mantenimiento</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="mantenimiento" id="mantenimiento_si" value="1" {{ $inventario->mantenimiento == 1 ? 'checked' : '' }}>
+                            <label class="form-check-label" for="mantenimiento_si">Sí</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="mantenimiento" id="mantenimiento_no" value="0" {{ $inventario->mantenimiento == 0 ? 'checked' : '' }}>
+                            <label class="form-check-label" for="mantenimiento_no">No</label>
+                        </div>
+                    </div>
+                    
                     <div class="text-center">
                         <!-- Buttons -->
                         <button type="submit" class="btn btn-primary">Guardar</button>

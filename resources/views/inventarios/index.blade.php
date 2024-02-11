@@ -14,11 +14,11 @@
     <div id="main" class="main">
 
         <div class="page-meta">
-            <h5>Usuarios</h5>
+            <h5>Inventario</h5>
             <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active">Inventarios</li>
+                    <li class="breadcrumb-item active">Inventario</li>
                 </ol>
             </nav>
             <!-- Mensaje session -->
@@ -60,7 +60,9 @@
                                     <tr>
                                         <!-- Nombre de columnas -->
                                         <th scope="col">#</th>
+                                        <th scope="col">Tipo</th>
                                         <th scope="col">Descripcion</th>
+                                        <th scope="col">Numero serie</th>
                                         <th scope="col">Estado</th>
                                         <th scope="col">Mantenimiento</th>
                                         <th scope="col">Acciones</th>
@@ -71,9 +73,23 @@
                                     @foreach ($inventarios as $inventario)
                                         <tr>
                                             <td>{{ $inventario->id }}</td><!-- ID inventario -->
+                                            <td>{{ $inventario->tipo }}</td><!-- Tipo -->
                                             <td>{{ $inventario->descripcion }}</td><!-- descripcion -->
-                                            <td>{{ $inventario->estado }}</td><!-- estado -->
-                                            <td>{{ $inventario->mantenimiento }}</td><!-- mantenimiento -->
+                                            <td>{{ $inventario->numero_serie }}</td><!-- numero de serie -->
+                                            <td>
+                                                @if ($inventario->estado == 1)
+                                                    <span class="badge badge-light-success">Disponible</span>
+                                                @else
+                                                    <span class="badge badge-light-danger">No disponible</span>
+                                                @endif
+                                            </td><!-- estado -->
+                                            <td>
+                                                @if ($inventario->mantenimiento == 1)
+                                                    <span class="badge badge-light-danger">En mantenimiento</span>
+                                                @else
+                                                    <span class="badge badge-light-success"></span>
+                                                @endif
+                                            </td><!-- mantenimiento -->
                                             <td>
                                                 <!-- Acciones -->
                                                 @can('Editar-inventario')<!-- Permiso editar-inventarios -->

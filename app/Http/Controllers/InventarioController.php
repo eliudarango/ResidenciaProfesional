@@ -55,7 +55,7 @@ class InventarioController extends Controller
                 'mantenimiento'
             ]);
             Inventario::create($request->all());
-            return redirect()->route('inventarios.index');
+            return redirect()->route('inventarios.index')->with('success', 'Inventario agregado correctamente');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al agregar el inventario']);
         }
@@ -95,7 +95,7 @@ class InventarioController extends Controller
                 'mantenimiento'
             ]);
             $inventario->update($request->all());
-            return redirect()->route('inventarios.index');
+            return redirect()->route('inventarios.index')->with('success', 'Inventario editado correctamente');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al editar el inventario']);
         }
@@ -109,7 +109,7 @@ class InventarioController extends Controller
     {
         try {
             $inventario->delete();
-            return redirect()->route('inventarios.index');
+            return redirect()->route('inventarios.index')->with('success', 'Inventario eliminado correctamente');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al eliminar el inventario']);
         }

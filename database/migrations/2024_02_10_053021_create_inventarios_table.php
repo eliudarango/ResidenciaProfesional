@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('inventarios', function (Blueprint $table) {
             $table->id();
+            $table->string('tipo');
             $table->string('descripcion');
+            $table->string('numero_serie');
             $table->boolean('estado')->nullable()->default(false);
             $table->boolean('mantenimiento')->nullable()->default(false);
             $table->timestamps();
