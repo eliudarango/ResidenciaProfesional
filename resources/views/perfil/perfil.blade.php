@@ -42,7 +42,7 @@
                     </div>
                     <br>
                     <div class="text-center user-info">
-                        <img src="/avatars/{{ Auth::user()->avatar }}" style="width: 80px; border-radius: 10%">
+                        <img src="/avatars/{{ Auth::user()->avatar }}" style="width: 150px; border-radius: 10%">
                         <p class="">{{ Auth::user()->name }}</p>
                     </div>
                     <br>

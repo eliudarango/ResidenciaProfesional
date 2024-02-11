@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//Librerias
 use Illuminate\Http\Request;
 
 class PerfilController extends Controller
@@ -21,6 +21,7 @@ class PerfilController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    //Metodo para retornar a la vista del profile o perfil
     public function index()
     {
         return view('perfil.perfil');
