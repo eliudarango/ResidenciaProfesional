@@ -27,18 +27,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Foto de perfil') }}</div>
+                    <div class="card-header">{{ __('Editar foto de perfil') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('avatar.store') }}" enctype="multipart/form-data">
                             @csrf
-
-                            @if (session('success'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
-
                             <div class="row mb-3">
                                 <label for="avatar"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Avatar') }}</label>
