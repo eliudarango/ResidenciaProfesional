@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\InventarioController;
+use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -22,16 +24,21 @@ use App\Http\Controllers\HomeController;
 Auth::routes();
 //Rutas de middleware
 Route::group(['middleware' => ['auth']], function () {
+    //Ruta home o inicio 
+    Route::resource('/', HomeController::class);
     //Ruta de roles
     Route::resource('roles', RolController::class);
     //Ruta de usuarios
     Route::resource('usuarios', UsuarioController::class);
-     //Ruta de inventarios
-     Route::resource('inventarios', InventarioController::class);
+    //Ruta de inventarios
+    Route::resource('inventarios', InventarioController::class);
+    //Ruta de perfil
+    Route::resource('perfil', PerfilController::class);
+    //Ruta de avatar
+    Route::resource('avatar', AvatarController::class);
 
 });
-//Ruta de home o inicio
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 
 

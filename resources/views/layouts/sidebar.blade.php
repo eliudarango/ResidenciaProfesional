@@ -127,7 +127,7 @@
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="avatar-container">
                             <div class="avatar avatar-sm avatar-indicators avatar-online">
-                                <img alt="avatar" src="/Template/src/assets/img/profile-30.png"
+                                <img alt="avatar" src="/avatars/{{ Auth::user()->avatar }}"
                                     class="rounded-circle">
                             </div>
                         </div>
@@ -262,8 +262,8 @@
                             </div>
                         </a>
                         <ul class="collapse submenu list-unstyled" id="users" data-bs-parent="#accordionExample">
-                            <li>
-                                <a href="./user-profile.html"> Perfil </a>
+                            <li class={{ Request::is('perfil') ? 'active' : '' }}>
+                                <a href="perfil"> Perfil </a>
                             </li>
                             <li>
                                 <a href="./user-account-settings.html"> Configurar cuenta </a>

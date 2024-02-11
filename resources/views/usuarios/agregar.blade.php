@@ -39,7 +39,7 @@
             <div class="card-body">
                 <h5 class="card-title">Registrar Usuario</h5>
                 <!-- Formulario -->
-                <form class="row g-3" action="{{ route('usuarios.store') }}" method="POST">
+                <form class="row g-3" action="{{ route('usuarios.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="col-12">
                         <!-- Nombre de usuario -->
@@ -50,6 +50,11 @@
                         <!-- Correo electronico -->
                         <label for="inputEmail4" class="form-label">Email</label>
                         <input type="email" class="form-control" name="email">
+                    </div>
+                    <!-- Telefono -->
+                    <div class="col-12">
+                        <label for="inputPhone" class="form-label">Teléfono</label>
+                        <input type="tel" class="form-control" id="telefono" name="telefono">
                     </div>
                     <div class="col-12">
                         <!-- Contraseña -->
@@ -67,6 +72,11 @@
                             <label for="inputPassword4" class="form-label">Rol</label>
                             {!! Form::select('roles[]', $roles, [], ['class' => 'form-select']) !!}
                         </div>
+                    </div>
+                    <!-- Imagen -->
+                    <div class="mb-3">
+                        <label for="profile_image" class="form-label">Imagen de perfil</label>
+                        <input type="file" class="form-control" id="imagen" name="imagen">
                     </div>
                     <div class="text-center">
                         <!-- Buttons -->

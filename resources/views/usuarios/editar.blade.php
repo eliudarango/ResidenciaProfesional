@@ -39,7 +39,7 @@
             <div class="card-body">
                 <h5 class="card-title">Editar usuario</h5>
                 <!--Formulario -->
-                <form class="row g-3" action="{{ route('usuarios.update', $user->id) }}" method="POST">
+                <form class="row g-3" action="{{ route('usuarios.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="col-12">
@@ -51,6 +51,11 @@
                         <!-- Correo electronico -->
                         <label for="inputEmail4" class="form-label">Email</label>
                         <input type="email" class="form-control"name="email" value="{{ $user->email }}">
+                    </div>
+                    <!-- Telefono -->
+                    <div class="col-12">
+                        <label for="inputPhone" class="form-label">Teléfono</label>
+                        <input type="tel" class="form-control" id="telefono" name="telefono" value="{{ $user->telefono }}">
                     </div>
                     <div class="col-12">
                         <!-- Contraseña -->
@@ -68,6 +73,11 @@
                             <label for="inputPassword4" class="form-label">Rol</label>
                             {!! Form::select('roles[]', $roles, [], ['class' => 'form-select']) !!}
                         </div>
+                    </div>
+                    <!-- Imagen -->
+                    <div class="mb-3">
+                        <label for="profile_image" class="form-label">Imagen de perfil</label>
+                        <input type="file" class="form-control" id="imagen" name="imagen">
                     </div>
                     <div class="text-center">
                         <!-- Buttons -->
