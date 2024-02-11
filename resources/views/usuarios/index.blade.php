@@ -2,7 +2,7 @@
 @extends('layouts.sidebar')
 
 @section('content')
-<!-- Estilos card body -->
+    <!-- Estilos card body -->
     <style>
         .custom-card {
             max-width: 700px;
@@ -34,7 +34,8 @@
             @endif
         </div>
         <br>
-        @can('Crear-usuarios')<!-- Permiso crear-usuarios -->
+        @can('Crear-usuarios')
+            <!-- Permiso crear-usuarios -->
             <section class="section">
                 <div class="row">
                     <div class="col-lg-4">
@@ -49,7 +50,8 @@
                     </div>
             </section>
         @endcan
-        @can('Ver-usuarios')<!-- Permiso ver-usuarios -->
+        @can('Ver-usuarios')
+            <!-- Permiso ver-usuarios -->
             <div class="row layout-top-spacing">
 
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
@@ -62,6 +64,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Nombre</th>
                                         <th scope="col">E-mail</th>
+                                        <th scope="col">Teléfono</th>
                                         <th scope="col">Rol</th>
                                         <th scope="col">Acciones</th>
                                     </tr>
@@ -71,22 +74,35 @@
                                     @foreach ($usuarios as $usuario)
                                         <tr>
                                             <td>{{ $usuario->id }}</td><!-- ID usuario -->
-                                            <td>{{ $usuario->name }}</td><!-- Nombre de usuario -->
+                                            <td>
+                                                <div class="avatar me-2">
+                                                    <img alt="avatar" src="/avatars/{{ Auth::user()->avatar }}"
+                                                        class="rounded-circle" />
+                                                </div>
+
+                                                {{ $usuario->name }}
+                                            </td><!-- Nombre de usuario -->
                                             <td>{{ $usuario->email }}</td><!-- Correo de usuario -->
+                                            <td>{{ $usuario->telefono }}</td><!-- Telefono de usuario -->
                                             <td><!-- Rol de usuario -->
-                                                @if (!empty($usuario->getRoleNames()))
-                                                    @foreach ($usuario->getRoleNames() as $rolName)
-                                                        {{ $rolName }}
-                                                    @endforeach
-                                                @endif
+                                                <p class="mb-0">Puesto</p>
+                                                <span class="text-info">
+                                                    @if (!empty($usuario->getRoleNames()))
+                                                        @foreach ($usuario->getRoleNames() as $rolName)
+                                                            {{ $rolName }}
+                                                        @endforeach
+                                                    @endif
+                                                </span>
                                             </td>
                                             <td>
                                                 <!-- Acciones -->
-                                                @can('Editar-usuarios')<!-- Permiso editar-usuarios -->
+                                                @can('Editar-usuarios')
+                                                    <!-- Permiso editar-usuarios -->
                                                     <a href="{{ route('usuarios.edit', $usuario->id) }}"
                                                         class="btn btn-info  btn-sm">Editar</a>
                                                 @endcan
-                                                @can('Borrar-usuarios')<!-- Permiso borrar-usuarios -->
+                                                @can('Borrar-usuarios')
+                                                    <!-- Permiso borrar-usuarios -->
                                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                                         data-bs-target="#modal-{{ $usuario->id }}">Eliminar</button>
                                                 @endcan
