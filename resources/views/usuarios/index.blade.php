@@ -76,7 +76,7 @@
                                             <td>{{ $usuario->id }}</td><!-- ID usuario -->
                                             <td>
                                                 <div class="avatar me-2">
-                                                    <img alt="avatar" src="/avatars/{{ Auth::user()->avatar }}"
+                                                    <img alt="avatar" src="/avatars/{{ $usuario->avatar }}"
                                                         class="rounded-circle" />
                                                 </div>
 

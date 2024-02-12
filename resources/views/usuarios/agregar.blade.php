@@ -73,11 +73,6 @@
                             {!! Form::select('roles[]', $roles, [], ['class' => 'form-select']) !!}
                         </div>
                     </div>
-                    <!-- Imagen -->
-                    <div class="mb-3">
-                        <label for="profile_image" class="form-label">Imagen de perfil</label>
-                        <input type="file" class="form-control" id="imagen" name="imagen">
-                    </div>
                     <div class="text-center">
                         <!-- Buttons -->
                         <button type="submit" class="btn btn-primary">Guardar</button>
