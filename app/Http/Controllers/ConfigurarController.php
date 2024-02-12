@@ -21,7 +21,7 @@ class ConfigurarController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * 
      */
     //Metodo para retonar a la vista para cambiar foto de perfil
     public function index()
