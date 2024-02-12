@@ -265,8 +265,8 @@
                             <li class={{ Request::is('perfil') ? 'active' : '' }}>
                                 <a href="perfil"> Perfil </a>
                             </li>
-                            <li>
-                                <a href="avatar"> Configurar cuenta </a>
+                            <li class={{ Request::is('configurar') ? 'active' : '' }}>
+                                <a href="configurar"> Configurar cuenta </a>
                             </li>
                         </ul>
                     </li>

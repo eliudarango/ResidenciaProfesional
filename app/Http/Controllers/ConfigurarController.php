@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
-class AvatarController extends Controller
+class ConfigurarController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -27,7 +27,7 @@ class AvatarController extends Controller
     public function index()
     {
         try {
-            return view('perfil.avatar');
+            return view('perfil.configurar');
         } catch (\Throwable $th) {
         }
     }
@@ -64,11 +64,11 @@ class AvatarController extends Controller
                     'avatar' => $avatarName
                 ]);
             //retonar mensaje correcto
-            return back()->with('success', 'Foto de perfil cambiada correctamente.');
+            return back()->with('success', 'Perfil modificado correctamente.');
         } catch (\Exception $e) {
             return redirect()
                 ->back()
-                ->withErrors(['error' => 'Ha ocurrido un error al cambiar la foto de perfil']);
+                ->withErrors(['error' => 'Ha ocurrido un error al modificar el perfil']);
         }
     }
 }
