@@ -38,6 +38,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('avatar', AvatarController::class);
 
 });
+//Ruta que capture todas las URL no coincidentes
+Route::fallback(function () {
+    return redirect('/');
+});
 
 
 

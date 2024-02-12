@@ -41,6 +41,9 @@ class AvatarController extends Controller
     {
         try {
             $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users,email,' . auth()->id(),
+                'telefono' => 'required|string|max:20',
                 'avatar' => 'required|image',
             ]);
             // Validacion para eliminar la antigua foto , para no almacenarlas al hacer el update
@@ -54,7 +57,12 @@ class AvatarController extends Controller
             // Hacer el update
             Auth()
                 ->user()
-                ->update(['avatar' => $avatarName]);
+                ->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'telefono' => $request->telefono,
+                    'avatar' => $avatarName
+                ]);
             //retonar mensaje correcto
             return back()->with('success', 'Foto de perfil cambiada correctamente.');
         } catch (\Exception $e) {

@@ -27,39 +27,55 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Editar foto de perfil') }}</div>
-
                     <div class="card-body">
-                        <form method="POST" action="{{ route('avatar.store') }}" enctype="multipart/form-data">
-                            @csrf
-                            <div class="row mb-3">
-                                <label for="avatar"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Avatar') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="avatar" type="file"
-                                        class="form-control @error('avatar') is-invalid @enderror" name="avatar"
-                                        value="{{ old('avatar') }}" required autocomplete="avatar"
-                                        accept="image/png, image/jpeg, image/jpg, image/gif">
-
-                                    <img src="/avatars/{{ Auth::user()->avatar }}" style="width:100px;margin-top: 10px;">
-
-                                    @error('avatar')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                        <h5 class="card-title">Editar perfil</h5>
+                        <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
+                            <form method="POST" action="{{ route('avatar.store') }}" enctype="multipart/form-data">
+                                @csrf
+                                <div class="text-center user-info">
+                                    <img src="/avatars/{{ Auth::user()->avatar }}" style="width: 150px; border-radius: 10%">
                                 </div>
-                            </div>
-
-                            <div class="row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Cambiar imagen') }}
-                                    </button>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- Nombre de usuario -->
+                                        <label for="inputNanme4" class="form-label">Nombre completo </label>
+                                        <input type="text" class="form-control" name="name"
+                                            value="{{ Auth::user()->name }}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Correo electronico -->
+                                        <label for="inputEmail4" class="form-label">Correo electronico</label>
+                                        <input type="email" class="form-control"name="email"
+                                            value="{{ Auth::user()->email }}">
+                                    </div>
+                                    <!-- Telefono -->
+                                    <div class="col-md-6">
+                                        <label for="inputPhone" class="form-label">Teléfono</label>
+                                        <input type="tel" class="form-control" id="telefono" name="telefono"
+                                            value="{{ Auth::user()->telefono }}">
+                                    </div>
+                                    <!-- Imagen de perfil-->
+                                    <div class="col-md-6">
+                                        <label for="inputAvatar" class="form-label">Imagen de perfil</label>
+                                        <input id="avatar" type="file"
+                                            class="form-control @error('avatar') is-invalid @enderror" name="avatar"
+                                            value="{{ old('avatar') }}" required autocomplete="avatar"
+                                            accept="image/png, image/jpeg, image/jpg, image/gif">
+                                        @error('avatar')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-12 mt-4 text-center">
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Guardar') }}
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

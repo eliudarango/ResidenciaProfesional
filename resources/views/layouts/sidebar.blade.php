@@ -266,7 +266,7 @@
                                 <a href="perfil"> Perfil </a>
                             </li>
                             <li>
-                                <a href="./user-account-settings.html"> Configurar cuenta </a>
+                                <a href="avatar"> Configurar cuenta </a>
                             </li>
                         </ul>
                     </li>
