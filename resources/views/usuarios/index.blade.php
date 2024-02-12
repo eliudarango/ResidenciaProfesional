@@ -63,7 +63,7 @@
                                         <!-- Nombre de columnas -->
                                         <th scope="col">#</th>
                                         <th scope="col">Nombre</th>
-                                        <th scope="col">E-mail</th>
+                                        <th scope="col">Correo electronico</th>
                                         <th scope="col">Teléfono</th>
                                         <th scope="col">Rol</th>
                                         <th scope="col">Acciones</th>
