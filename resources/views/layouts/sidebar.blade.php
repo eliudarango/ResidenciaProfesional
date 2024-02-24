@@ -239,7 +239,7 @@
                         </a>
                     </li>
                     <!-- Button de perfil -->
-                    <li class="menu">
+                    <li class="menu {{ str_contains(Request::url(), 'perfil') || str_contains(Request::url(), 'configurar') ? 'active' : '' }}">
                         <a href="#users" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -262,36 +262,16 @@
                             </div>
                         </a>
                         <ul class="collapse submenu list-unstyled" id="users" data-bs-parent="#accordionExample">
-                            <li class={{ Request::is('perfil') ? 'active' : '' }}>
+                            <li class="{{ str_contains(Request::url(), 'perfil') ? 'active' : '' }}">
                                 <a href="perfil"> Perfil </a>
                             </li>
-                            <li class={{ Request::is('configurar') ? 'active' : '' }}>
+                            <li class="{{ str_contains(Request::url(), 'configurar') ? 'active' : '' }}">
                                 <a href="configurar"> Configurar cuenta </a>
                             </li>
                         </ul>
                     </li>
                     <!-- Button de inventario -->
-
-                    <li class="menu {{ Request::is('inventarios') ? 'active' : '' }}">
-                        <a href="inventarios" aria-expanded="false"
-                            class="dropdown-toggle">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-box">
-                                    <path
-                                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-                                    </path>
-                                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                                </svg>
-                                <span>Inventario</span>
-                            </div>
-                        </a>
-                    </li>
-
-
-                    <li class="menu">
+                    <li class="menu {{ str_contains(Request::url(), 'inventarios') || str_contains(Request::url(), 'categorias') ? 'active' : '' }}">
                         <a href="#inventario" data-bs-toggle="collapse" aria-expanded="false"
                             class="dropdown-toggle">
                             <div class="">
@@ -317,11 +297,11 @@
                         </a>
                         <ul class="collapse submenu list-unstyled" id="inventario"
                             data-bs-parent="#accordionExample">
-                            <li class={{ Request::is('inventarios') ? 'active' : '' }}>
-                                <a href="inventarios"> Lista Inventarios </a>
+                            <li class="{{ str_contains(Request::url(), 'inventarios') ? 'active' : '' }}">
+                                <a href="/inventarios"> Lista Inventarios </a>
                             </li>
-                            <li class={{ Request::is('categorias') ? 'active' : '' }}>
-                                <a href="categorias"> Lista Categorias </a>
+                            <li class="{{ str_contains(Request::url(), 'categorias') ? 'active' : '' }}">
+                                <a href="/categorias"> Lista Categorias </a>
                             </li>
                         </ul>
                     </li>
@@ -433,7 +413,7 @@
                         </a>
                     </li>
                     <!-- Button de permisos -->
-                    <li class="menu">
+                    <li class="menu {{ str_contains(Request::url(), 'usuarios') || str_contains(Request::url(), 'roles') ? 'active' : '' }}">
                         <a href="#authentication" data-bs-toggle="collapse" aria-expanded="false"
                             class="dropdown-toggle">
                             <div class="">
@@ -457,10 +437,10 @@
                         </a>
                         <ul class="collapse submenu list-unstyled" id="authentication"
                             data-bs-parent="#accordionExample">
-                            <li class={{ Request::is('usuarios') ? 'active' : '' }}>
+                            <li class="{{ str_contains(Request::url(), 'usuarios') ? 'active' : '' }}">
                                 <a href="/usuarios"> Usuarios </a>
                             </li>
-                            <li class={{ Request::is('roles') ? 'active' : '' }}>
+                            <li class="{{ str_contains(Request::url(), 'roles') ? 'active' : '' }}">
                                 <a href="/roles"> Roles </a>
                             </li>
                         </ul>
