@@ -1037,7 +1037,7 @@ body .navbar .dark-mode, body:not(.dark) .navbar .dark-mode {
   stroke-width: 1.8;
 }
 #sidebar ul.menu-categories li.menu.active > .dropdown-toggle {
-  background-image: linear-gradient(115deg, #3754db 50%, #db4049 120%);
+  background-image: linear-gradient(115deg, #1B396A 50%, #1B396A 120%);
 }
 #sidebar ul.menu-categories li.menu.active > .dropdown-toggle svg, #sidebar ul.menu-categories li.menu.active > .dropdown-toggle span {
   color: #fff;
@@ -1147,7 +1147,7 @@ body .navbar .dark-mode, body:not(.dark) .navbar .dark-mode {
   content: "";
   position: absolute;
   background-color: rgba(255, 255, 255, 0.07);
-  background-image: linear-gradient(115deg, #3754db 50%, #db4049 120%);
+  background-image: linear-gradient(115deg, #1B396A 50%, #1B396A 120%);
   width: 15px;
   height: 42px;
   width: 100%;

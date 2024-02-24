@@ -34,6 +34,12 @@ class SeederTablaPermisos extends Seeder
             'Crear-inventario',
             'Editar-inventario',
             'Borrar-inventario',
+
+            //tabla categoria
+            'Ver-categoria',
+            'Crear-categoria',
+            'Editar-categoria',
+            'Borrar-categoria',
             
         ];
         foreach ($permisos as $permiso) {

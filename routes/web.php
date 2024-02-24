@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\InventarioController;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ConfigurarController;
 use App\Http\Controllers\HomeController;
@@ -32,6 +33,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', UsuarioController::class);
     //Ruta de inventarios
     Route::resource('inventarios', InventarioController::class);
+    //Ruta de categorias
+    Route::resource('categorias', CategoriaController::class);
     //Ruta de perfil
     Route::resource('perfil', PerfilController::class);
     //Ruta de avatar
