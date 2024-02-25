@@ -33,40 +33,65 @@
                             <form method="POST" action="{{ route('configurar.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="text-center user-info">
-                                    <img src="/avatars/{{ Auth::user()->avatar }}" style="width: 150px; border-radius: 10%">
+                                    <img src="/avatars/{{ Auth::user()->avatar }}"
+                                        style="width: 150px; border-radius: 50%; border: 2px solid #ccc;">
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <!-- Nombre de usuario -->
-                                        <label for="inputNanme4" class="form-label">Nombre completo </label>
-                                        <input type="text" class="form-control" name="name"
-                                            value="{{ Auth::user()->name }}">
+                                        <div class="form-group">
+                                            <!-- Nombre de usuario -->
+                                            <label for="inputNanme4" class="form-label">Nombre completo </label>
+                                            <input type="text" class="form-control" name="name"
+                                                value="{{ Auth::user()->name }}">
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <!-- Correo electronico -->
-                                        <label for="inputEmail4" class="form-label">Correo electronico</label>
-                                        <input type="email" class="form-control"name="email"
-                                            value="{{ Auth::user()->email }}">
+                                        <div class="form-group">
+                                            <!-- Puesto o rol -->
+                                            <label for="inputNanme4" class="form-label">Puesto </label>
+                                            <input type="text" class="form-control" name="puesto"
+                                                value="{{ implode(', ', auth()->user()->getRoleNames()->all()) }}"readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <!-- Correo electronico -->
+                                            <label for="inputEmail4" class="form-label">Correo electronico</label>
+                                            <input type="email" class="form-control"name="email"
+                                                value="{{ Auth::user()->email }}">
+                                        </div>
                                     </div>
                                     <!-- Telefono -->
                                     <div class="col-md-6">
-                                        <label for="inputPhone" class="form-label">Teléfono</label>
-                                        <input type="tel" class="form-control" id="telefono" name="telefono"
-                                            value="{{ Auth::user()->telefono }}">
+                                        <div class="form-group">
+                                            <label for="inputPhone" class="form-label">Teléfono</label>
+                                            <input type="tel" class="form-control" id="telefono" name="telefono"
+                                                value="{{ Auth::user()->telefono }}">
+                                        </div>
+                                    </div>
+                                    <!-- Localización -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="inputPhone" class="form-label">Localización</label>
+                                            <input type="text" class="form-control" id="localizacion" name="localizacion"
+                                                value="Instituto Tecnológico de Oaxaca" readonly>
+                                        </div>
                                     </div>
                                     <!-- Imagen de perfil-->
                                     <div class="col-md-6">
-                                        <label for="inputAvatar" class="form-label">Imagen de perfil</label>
-                                        <input id="avatar" type="file"
-                                            class="form-control @error('avatar') is-invalid @enderror" name="avatar"
-                                            value="{{ old('avatar') }}" required autocomplete="avatar"
-                                            accept="image/png, image/jpeg, image/jpg, image/gif">
-                                        @error('avatar')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                        <div class="form-group">
+                                            <label for="inputAvatar" class="form-label">Imagen de perfil</label>
+                                            <input id="avatar" type="file"
+                                                class="form-control @error('avatar') is-invalid @enderror" name="avatar"
+                                                value="{{ old('avatar') }}" required autocomplete="avatar"
+                                                accept="image/png, image/jpeg, image/jpg, image/gif">
+                                            @error('avatar')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="col-md-12 mt-4 text-center">
                                         <button type="submit" class="btn btn-primary">
