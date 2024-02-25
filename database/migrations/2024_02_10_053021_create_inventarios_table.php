@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('inventarios', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo');
+            $table->unsignedBigInteger('id_categoria');
+            $table->foreign('id_categoria')->references('id')->on('categorias');
             $table->string('descripcion');
             $table->string('numero_serie');
             $table->boolean('estado')->nullable()->default(false);

@@ -44,45 +44,57 @@
                     @method('PATCH')
                     <div class="col-12">
                         <!-- Tipo -->
-                        <label for="inputTipo4" class="form-label">Tipo </label>
-                        <input type="text" class="form-control" name="tipo" value="{{ $inventario->tipo }}">
+                        <label for="categoria">Categoría:</label>
+                        <select name="id_categoria" id="categoria">
+                            @foreach ($categorias as $categoria)
+                                <option value="{{ $categoria->id }}"
+                                    {{ $inventario->id_categoria == $categoria->id ? 'selected' : '' }}>
+                                    {{ $categoria->tipo }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-12">
                         <!-- Descripcion -->
                         <label for="inputDescripcion4" class="form-label">Descripcion </label>
-                        <input type="text" class="form-control" name="descripcion" value="{{ $inventario->descripcion }}">
+                        <input type="text" class="form-control" name="descripcion"
+                            value="{{ $inventario->descripcion }}">
                     </div>
                     <div class="col-12">
                         <!-- Numero serie -->
                         <label for="inputnumeroserie4" class="form-label">Numero de serie </label>
-                        <input type="text" class="form-control" name="numero_serie" value="{{ $inventario->numero_serie }}">
+                        <input type="text" class="form-control" name="numero_serie"
+                            value="{{ $inventario->numero_serie }}">
                     </div>
                     <div class="col-12">
                         <!-- Estado -->
                         <label class="form-label">Estado</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="estado" id="estado_activo" value="1" {{ $inventario->estado == 1 ? 'checked' : '' }}>
+                            <input class="form-check-input" type="radio" name="estado" id="estado_activo" value="1"
+                                {{ $inventario->estado == 1 ? 'checked' : '' }}>
                             <label class="form-check-label" for="estado_activo">Disponible</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="estado" id="estado_inactivo" value="0" {{ $inventario->estado == 0 ? 'checked' : '' }}>
+                            <input class="form-check-input" type="radio" name="estado" id="estado_inactivo"
+                                value="0" {{ $inventario->estado == 0 ? 'checked' : '' }}>
                             <label class="form-check-label" for="estado_inactivo">No disponible</label>
                         </div>
                     </div>
-                    
+
                     <div class="col-12">
                         <!-- Mantenimiento -->
                         <label class="form-label">Mantenimiento</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="mantenimiento" id="mantenimiento_si" value="1" {{ $inventario->mantenimiento == 1 ? 'checked' : '' }}>
+                            <input class="form-check-input" type="radio" name="mantenimiento" id="mantenimiento_si"
+                                value="1" {{ $inventario->mantenimiento == 1 ? 'checked' : '' }}>
                             <label class="form-check-label" for="mantenimiento_si">Sí</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="mantenimiento" id="mantenimiento_no" value="0" {{ $inventario->mantenimiento == 0 ? 'checked' : '' }}>
+                            <input class="form-check-input" type="radio" name="mantenimiento" id="mantenimiento_no"
+                                value="0" {{ $inventario->mantenimiento == 0 ? 'checked' : '' }}>
                             <label class="form-check-label" for="mantenimiento_no">No</label>
                         </div>
                     </div>
-                    
+
                     <div class="text-center">
                         <!-- Buttons -->
                         <button type="submit" class="btn btn-primary">Guardar</button>

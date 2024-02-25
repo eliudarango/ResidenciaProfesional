@@ -2,7 +2,7 @@
 @extends('layouts.sidebar')
 
 @section('content')
-<!-- Estilos card body -->
+    <!-- Estilos card body -->
     <style>
         .custom-card {
             max-width: 700px;
@@ -34,7 +34,8 @@
             @endif
         </div>
         <br>
-        @can('Crear-inventario')<!-- Permiso crear-inventarios -->
+        @can('Crear-inventario')
+            <!-- Permiso crear-inventarios -->
             <section class="section">
                 <div class="row">
                     <div class="col-lg-4">
@@ -49,96 +50,100 @@
                     </div>
             </section>
         @endcan
-        @can('Ver-inventario')<!-- Permiso ver-inventarios -->
-            <div class="row layout-top-spacing">
+        @can('Ver-inventario')
+            <!-- Permiso ver-inventarios -->
+            @foreach ($inventarios as $idCategoria => $inventariosPorCategoria)
+                <div class="row layout-top-spacing">
 
-                <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
-                    <div class="widget-content widget-content-area br-8">
-                        <div class="table-responsive">
-                            <table id="zero-config" class="table dt-table-hover" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <!-- Nombre de columnas -->
-                                        <th scope="col">#</th>
-                                        <th scope="col">Tipo</th>
-                                        <th scope="col">Descripcion</th>
-                                        <th scope="col">Numero serie</th>
-                                        <th scope="col">Estado</th>
-                                        <th scope="col">Mantenimiento</th>
-                                        <th scope="col">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Datos de inventarios -->
-                                    @foreach ($inventarios as $inventario)
+                    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                        <div class="widget-content widget-content-area br-8">
+                            <div class="table-responsive">
+                                <table id="zero-config" class="table dt-table-hover" style="width:100%">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $inventario->id }}</td><!-- ID inventario -->
-                                            <td>{{ $inventario->tipo }}</td><!-- Tipo -->
-                                            <td>{{ $inventario->descripcion }}</td><!-- descripcion -->
-                                            <td>{{ $inventario->numero_serie }}</td><!-- numero de serie -->
-                                            <td>
-                                                @if ($inventario->estado == 1)
-                                                    <span class="badge badge-light-success">Disponible</span>
-                                                @else
-                                                    <span class="badge badge-light-danger">No disponible</span>
-                                                @endif
-                                            </td><!-- estado -->
-                                            <td>
-                                                @if ($inventario->mantenimiento == 1)
-                                                    <span class="badge badge-light-danger">En mantenimiento</span>
-                                                @else
-                                                    <span class="badge badge-light-success"></span>
-                                                @endif
-                                            </td><!-- mantenimiento -->
-                                            <td>
-                                                <!-- Acciones -->
-                                                @can('Editar-inventario')<!-- Permiso editar-inventarios -->
-                                                    <a href="{{ route('inventarios.edit', $inventario->id) }}"
-                                                        class="btn btn-info  btn-sm">Editar</a>
-                                                @endcan
-                                                @can('Borrar-inventario')<!-- Permiso borrar-inventarios -->
-                                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                        data-bs-target="#modal-{{ $inventario->id }}">Eliminar</button>
-                                                @endcan
-                                            </td>
+                                            <!-- Nombre de columnas -->
+                                            <th scope="col">#</th>
+                                            <th scope="col">Tipo</th>
+                                            <th scope="col">Descripcion</th>
+                                            <th scope="col">Numero serie</th>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Mantenimiento</th>
+                                            <th scope="col">Acciones</th>
                                         </tr>
-                                        <div class="modal fade" id="modal-{{ $inventario->id }}" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <!-- Ventana emergente de eliminar inventario -->
-                                                    <div class="modal-body">
-                                                        Estas seguro de eliminar el inventario {{ $inventario->descripcion }}?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <form
-                                                            action="{{ route('inventarios.destroy', ['inventario' => $inventario->id]) }}"
-                                                            method="POST">
-                                                            @method('DELETE')
-                                                            @csrf
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Cerrar</button>
-                                                            <button type="submit" class="btn btn-success">Aceptar</button>
-                                                        </form>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Datos de inventarios -->
+                                        @foreach ($inventariosPorCategoria as $inventario)
+                                            <tr>
+                                                <td>{{ $inventario->id }}</td><!-- ID inventario -->
+                                                <td>{{ $inventario->categoria ? $inventario->categoria->tipo : 'Sin categoría' }}
+                                                </td><!-- Tipo -->
+                                                <td>{{ $inventario->descripcion }}</td><!-- descripcion -->
+                                                <td>{{ $inventario->numero_serie }}</td><!-- numero de serie -->
+                                                <td>
+                                                    @if ($inventario->estado == 1)
+                                                        <span class="badge badge-light-success">Disponible</span>
+                                                    @else
+                                                        <span class="badge badge-light-danger">No disponible</span>
+                                                    @endif
+                                                </td><!-- estado -->
+                                                <td>
+                                                    @if ($inventario->mantenimiento == 1)
+                                                        <span class="badge badge-light-danger">En mantenimiento</span>
+                                                    @else
+                                                        <span class="badge badge-light-success"></span>
+                                                    @endif
+                                                </td><!-- mantenimiento -->
+                                                <td>
+                                                    <!-- Acciones -->
+                                                    @can('Editar-inventario')
+                                                        <!-- Permiso editar-inventarios -->
+                                                        <a href="{{ route('inventarios.edit', $inventario->id) }}"
+                                                            class="btn btn-info  btn-sm">Editar</a>
+                                                    @endcan
+                                                    @can('Borrar-inventario')
+                                                        <!-- Permiso borrar-inventarios -->
+                                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                            data-bs-target="#modal-{{ $inventario->id }}">Eliminar</button>
+                                                    @endcan
+                                                </td>
+                                            </tr>
+                                            <div class="modal fade" id="modal-{{ $inventario->id }}" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                        </div>
+                                                        <!-- Ventana emergente de eliminar inventario -->
+                                                        <div class="modal-body">
+                                                            Estas seguro de eliminar el inventario
+                                                            {{ $inventario->descripcion }}?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <form
+                                                                action="{{ route('inventarios.destroy', ['inventario' => $inventario->id]) }}"
+                                                                method="POST">
+                                                                @method('DELETE')
+                                                                @csrf
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Cerrar</button>
+                                                                <button type="submit" class="btn btn-success">Aceptar</button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         @endcan
-        <div class="pagination justify-content-end">
-            {!! $inventarios->links() !!}
-        </div>
     </div>
 @endsection

@@ -43,8 +43,12 @@
                     @csrf
                     <div class="col-12">
                         <!-- Tipo -->
-                        <label for="inputTipo4" class="form-label">Tipo</label>
-                        <input type="text" class="form-control" name="tipo">
+                        <label for="categoria">Categoría:</label>
+                        <select name="id_categoria" id="id_categoria">
+                            @foreach ($categorias as $categoria)
+                                <option value="{{ $categoria->id }}">{{ $categoria->tipo }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-12">
                         <!-- Descripcion -->

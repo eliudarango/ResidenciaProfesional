@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 //Librerias
 use App\Models\Inventario;
+use App\Models\Categoria;
 
 class InventarioController extends Controller
 {
@@ -24,7 +25,7 @@ class InventarioController extends Controller
     public function index()
     {
         try {
-            $inventarios = Inventario::paginate(5);
+            $inventarios = Inventario::with('categoria')->get()->groupBy('id_categoria');
             return view('inventarios.index', compact('inventarios'));
         } catch (\Throwable $th) {
         }
@@ -37,7 +38,8 @@ class InventarioController extends Controller
     public function create()
     {
         try {
-            return view('inventarios.agregar');
+            $categorias = Categoria::all();
+            return view('inventarios.agregar', compact('categorias'));
         } catch (\Throwable $th) {
         }
     }
@@ -50,7 +52,9 @@ class InventarioController extends Controller
     {
         try {
             request()->validate([
+                'id_categoria' => 'required',
                 'descripcion' => 'required',
+                'numero_serie',
                 'estado',
                 'mantenimiento'
             ]);
@@ -77,7 +81,8 @@ class InventarioController extends Controller
     public function edit(Inventario $inventario)
     {
         try {
-            return view('inventarios.editar', compact('inventario'));
+            $categorias = Categoria::all();
+            return view('inventarios.editar', compact('inventario','categorias'));
         } catch (\Throwable $th) {
         }
     }
@@ -90,7 +95,9 @@ class InventarioController extends Controller
     {
         try {
             request()->validate([
+                'id_categoria' => 'required',
                 'descripcion' => 'required',
+                'numero_serie',
                 'estado',
                 'mantenimiento'
             ]);

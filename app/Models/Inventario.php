@@ -9,11 +9,16 @@ class Inventario extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "tipo",
+        "id_categoria",
         'descripcion',
         'numero_serie',
         'estado',
         'mantenimiento',
         
     ];
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'id_categoria');
+    }
 }
