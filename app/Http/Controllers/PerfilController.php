@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 //Librerias
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class PerfilController extends Controller
 {
@@ -40,7 +41,30 @@ class PerfilController extends Controller
      */
     public function store(Request $request)
     {
-      
+        try {
+            $request->validate([
+                'old_password' => 'required|string|min:8',
+                'password' => 'required|string|min:8|confirmed',
+            ]);
+
+            // Verificar la contraseña antigua
+            if (!Hash::check($request->old_password, auth()->user()->password)) {
+                return back()->withErrors(['error' => 'La contraseña antigua es incorrecta.']);
+            } else {
+                // Cambiar la contraseña
+                auth()->user()->update([
+                    'password' => Hash::make($request->password),
+                ]);
+
+                // Retornar mensaje correcto
+                return back()->with('success', 'Contraseña modificada correctamente.');
+            }
+
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->withErrors(['error' => 'Ha ocurrido un error al cambiar la contraseña o no coincide']);
+        }
     }
 
     /**
@@ -48,6 +72,11 @@ class PerfilController extends Controller
      */
     public function show(string $id)
     {
+
+        try {
+            return view('perfil.password');
+        } catch (\Throwable $th) {
+        }
     }
 
     /**

@@ -266,7 +266,7 @@
                                 <a href="perfil"> Perfil </a>
                             </li>
                             <li class="{{ str_contains(Request::url(), 'configurar') ? 'active' : '' }}">
-                                <a href="configurar"> Configurar cuenta </a>
+                                <a href="{{ route('perfil.show', ['perfil' => Auth::user()]) }}"> Cambiar contraseña </a>
                             </li>
                         </ul>
                     </li>
