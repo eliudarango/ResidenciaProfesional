@@ -262,11 +262,11 @@
                             </div>
                         </a>
                         <ul class="collapse submenu list-unstyled" id="users" data-bs-parent="#accordionExample">
-                            <li class="{{ str_contains(Request::url(), 'perfil') ? 'active' : '' }}">
-                                <a href="perfil"> Perfil </a>
+                            <li class="{{ Request::is('perfil*') && !Request::is('perfil/password*') ? 'active' : '' }}">
+                                <a href="/perfil"> Perfil </a>
                             </li>
-                            <li class="{{ str_contains(Request::url(), 'configurar') ? 'active' : '' }}">
-                                <a href="{{ route('perfil.show', ['perfil' => Auth::user()]) }}"> Cambiar contraseña </a>
+                            <li class="{{ str_contains(Request::url(), 'perfil/password') ? 'active' : '' }}">
+                                <a href="{{ route('perfil.show', ['password']) }}"> Cambiar contraseña </a>
                             </li>
                         </ul>
                     </li>
