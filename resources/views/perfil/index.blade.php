@@ -32,7 +32,7 @@
                 <div class="widget-content widget-content-area">
                     <div class="d-flex justify-content-between">
                         <h3 class="">Perfil</h3>
-                        <a href="configurar" class="mt-2 edit-profile"> <svg
+                        <a href="{{ route('perfil.edit', ['perfil' => Auth::user()]) }}" class="mt-2 edit-profile"> <svg
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="feather feather-edit-3">
@@ -42,7 +42,7 @@
                     </div>
                     <br>
                     <div class="text-center user-info">
-                        <img src="/avatars/{{ Auth::user()->avatar }}" style="width: 150px; border-radius: 10%">
+                        <img src="/avatars/{{ Auth::user()->avatar }}" style="width: 150px; border-radius: 50%; border: 3px solid #ccc;">
                         <p class="">{{ Auth::user()->name }}</p>
                     </div>
                     <br>

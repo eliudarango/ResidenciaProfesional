@@ -30,11 +30,13 @@
                     <div class="card-body">
                         <h5 class="card-title">Editar perfil</h5>
                         <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
-                            <form method="POST" action="{{ route('configurar.store') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('perfil.update', ['perfil' => Auth::user()]) }}"
+                                enctype="multipart/form-data">
                                 @csrf
+                                @method('PATCH')
                                 <div class="text-center user-info">
                                     <img src="/avatars/{{ Auth::user()->avatar }}"
-                                        style="width: 150px; border-radius: 50%; border: 2px solid #ccc;">
+                                        style="width: 150px; border-radius: 50%; border: 3px solid #ccc;">
                                 </div>
                                 <br>
                                 <div class="row">

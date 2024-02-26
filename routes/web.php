@@ -7,7 +7,6 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\PerfilController;
-use App\Http\Controllers\ConfigurarController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -37,8 +36,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('categorias', CategoriaController::class);
     //Ruta de perfil
     Route::resource('perfil', PerfilController::class);
-    //Ruta de avatar
-    Route::resource('configurar', ConfigurarController::class);
 
 });
 //Ruta que capture todas las URL no coincidentes
