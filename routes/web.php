@@ -2,13 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 //Llamada a controladores
-use App\Http\Controllers\RolController;
-use App\Http\Controllers\UsuarioController;
-use App\Http\Controllers\InventarioController;
-use App\Http\Controllers\CategoriaController;
-use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\Administrador\RolController;
+use App\Http\Controllers\Administrador\UsuarioController;
+use App\Http\Controllers\Inventario\InventarioController;
+use App\Http\Controllers\Inventario\CategoriaController;
+use App\Http\Controllers\Perfil\PerfilController;
 use App\Http\Controllers\HomeController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes

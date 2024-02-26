@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Administrador;
 
 use Illuminate\Http\Request;
 //Librerias
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;

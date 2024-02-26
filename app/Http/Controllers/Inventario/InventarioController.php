@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Inventario;
 
 use Illuminate\Http\Request;
 //Librerias
+use App\Http\Controllers\Controller;
 use App\Models\Inventario;
 use App\Models\Categoria;
 
