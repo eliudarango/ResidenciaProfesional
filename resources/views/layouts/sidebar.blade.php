@@ -345,7 +345,7 @@
                     </li>
                     <!-- Button de formularios -->
 
-                    <li class="menu">
+                    <li class="menu {{ str_contains(Request::url(), 'apartado-alumnos') || str_contains(Request::url(), 'apartado-salas') ? 'active' : '' }}">
                         <a href="#forms" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -368,8 +368,8 @@
                             </div>
                         </a>
                         <ul class="collapse submenu list-unstyled" id="forms" data-bs-parent="#accordionExample">
-                            <li>
-                                <a href="./form-bootstrap-basic.html"> Agregar inventario </a>
+                            <li class="{{ str_contains(Request::url(), 'apartados-alumnos') ? 'active' : '' }}" >
+                                <a href="apartado-alumnos"> Apartados alumnos </a>
                             </li>
                         </ul>
                     </li>
