@@ -5,7 +5,7 @@
     <div class="auth-container d-flex justify-content-center align-items-center vh-100">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-xxl-6 col-xl-8 col-lg-8 col-md-10 col-12">
+                <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-8 col-12">
                     <div class="card mt-3 mb-3">
                         <!-- Card body -->
                         <div class="card-body">

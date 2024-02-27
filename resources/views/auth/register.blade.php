@@ -14,7 +14,7 @@
     <div class="auth-container d-flex justify-content-center align-items-center vh-100">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-8 col-12">
+                <div class="col-xxl-6 col-xl-8 col-lg-8 col-md-10 col-12">
                     <div class="card mt-3 mb-3">
                         <!-- Card body -->
                         <div class="card-body">
@@ -28,13 +28,14 @@
                                 <!-- Titulo del departamento -->
                                 <h5> DEPARTAMENTO DE DESARROLLO ACADÉMICO</h5>
                             </div>
+                            <h6 class="card-subtitle mb-4 text-muted text-center">REGISTRARSE</h6>
                             <div class="row">
                                 <form method="POST" action="{{ route('register') }}">
                                     @csrf
 
                                     <div class="row mb-3">
                                         <label for="name"
-                                            class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                                            class="col-md-4 col-form-label text-md-end">{{ __('Nombre completo:') }}</label>
 
                                         <div class="col-md-6">
                                             <input id="name" type="text"
@@ -51,7 +52,7 @@
 
                                     <div class="row mb-3">
                                         <label for="email"
-                                            class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                                            class="col-md-4 col-form-label text-md-end">{{ __('Correo electronico:') }}</label>
 
                                         <div class="col-md-6">
                                             <input id="email" type="email"
@@ -68,7 +69,7 @@
 
                                     <div class="row mb-3">
                                         <label for="password"
-                                            class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                                            class="col-md-4 col-form-label text-md-end">{{ __('Contraseña:') }}</label>
 
                                         <div class="col-md-6">
                                             <input id="password" type="password"
@@ -85,7 +86,7 @@
 
                                     <div class="row mb-3">
                                         <label for="password-confirm"
-                                            class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                                            class="col-md-4 col-form-label text-md-end">{{ __('Confirmar contraseña:') }}</label>
 
                                         <div class="col-md-6">
                                             <input id="password-confirm" type="password" class="form-control"
@@ -96,7 +97,7 @@
                                     <div class="row mb-0">
                                         <div class="col-md-6 offset-md-4">
                                             <button type="submit" class="btn btn-primary">
-                                                {{ __('Register') }}
+                                                {{ __('Registrarse') }}
                                             </button>
                                         </div>
                                     </div>
