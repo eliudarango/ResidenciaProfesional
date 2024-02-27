@@ -34,7 +34,7 @@
                                     @csrf
                                     <div class="col-md-12 mb-3">
 
-                                        <h5>Iniciar Sesión</h5>
+                                        <h6 class="card-subtitle mb-4 text-muted text-center">INICIAR SESION</h6>
                                         <p>Ingrese su correo electrónico y contraseña para iniciar sesión</p>
 
                                     </div>
