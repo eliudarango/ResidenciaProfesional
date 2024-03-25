@@ -1,4 +1,4 @@
-<!-- Vista principal categorias -->
+<!-- Vista principal materiales -->
 @extends('layouts.sidebar')
 
 @section('content')
@@ -14,11 +14,11 @@
     <div id="main" class="main">
 
         <div class="page-meta">
-            <h5>Categoria</h5>
+            <h5>Materiales</h5>
             <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active">Categoria</li>
+                    <li class="breadcrumb-item active">Materiales</li>
                 </ol>
             </nav>
             <!-- Mensaje session -->
@@ -34,22 +34,22 @@
             @endif
         </div>
         <br>
-        @can('Crear-categoria')<!-- Permiso crear-categorias -->
+        @can('Crear-material')<!-- Permiso crear-materials -->
             <section class="section">
                 <div class="row">
                     <div class="col-lg-4">
-                        <!-- Card body agregar categoria -->
+                        <!-- Card body agregar material -->
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Agregar categoria</h5>
-                                <a href="{{ route('categorias.create') }}" class="btn btn-warning">Nuevo</a>
+                                <h5 class="card-title">Agregar material</h5>
+                                <a href="{{ route('materials.create') }}" class="btn btn-warning">Nuevo</a>
                             </div>
                         </div>
 
                     </div>
             </section>
         @endcan
-        @can('Ver-categoria')<!-- Permiso ver-categorias -->
+        @can('Ver-material')<!-- Permiso ver-materials -->
             <div class="row layout-top-spacing">
 
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
@@ -60,29 +60,29 @@
                                     <tr>
                                         <!-- Nombre de columnas -->
                                         <th scope="col">#</th>
-                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Categoria</th>
                                         <th scope="col">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Datos de categorias -->
-                                    @foreach ($categorias as $categoria)
+                                    <!-- Datos de materials -->
+                                    @foreach ($materials as $material)
                                         <tr>
-                                            <td>{{ $categoria->id }}</td><!-- ID categoria -->
-                                            <td>{{ $categoria->tipo }}</td><!-- Tipo -->
+                                            <td>{{ $material->id }}</td><!-- ID material -->
+                                            <td>{{ $material->categoria }}</td><!-- categoria -->
                                             <td>
                                                 <!-- Acciones -->
-                                                @can('Editar-categoria')<!-- Permiso editar-categorias -->
-                                                    <a href="{{ route('categorias.edit', $categoria->id) }}"
+                                                @can('Editar-material')<!-- Permiso editar-materials -->
+                                                    <a href="{{ route('materials.edit', $material->id) }}"
                                                         class="btn btn-info  btn-sm">Editar</a>
                                                 @endcan
-                                                @can('Borrar-categoria')<!-- Permiso borrar-categorias -->
+                                                @can('Borrar-material')<!-- Permiso borrar-materials -->
                                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                        data-bs-target="#modal-{{ $categoria->id }}">Eliminar</button>
+                                                        data-bs-target="#modal-{{ $material->id }}">Eliminar</button>
                                                 @endcan
                                             </td>
                                         </tr>
-                                        <div class="modal fade" id="modal-{{ $categoria->id }}" tabindex="-1"
+                                        <div class="modal fade" id="modal-{{ $material->id }}" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -91,13 +91,13 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
-                                                    <!-- Ventana emergente de eliminar categoria -->
+                                                    <!-- Ventana emergente de eliminar material -->
                                                     <div class="modal-body">
-                                                        Estas seguro de eliminar la categoria {{ $categoria->tipo }}?
+                                                        Estas seguro de eliminar la material {{ $material->categoria }}?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <form
-                                                            action="{{ route('categorias.destroy', ['categoria' => $categoria->id]) }}"
+                                                            action="{{ route('materials.destroy', ['material' => $material->id]) }}"
                                                             method="POST">
                                                             @method('DELETE')
                                                             @csrf
@@ -118,7 +118,7 @@
             </div>
         @endcan
         <div class="pagination justify-content-end">
-            {!! $categorias->links() !!}
+            {!! $materials->links() !!}
         </div>
     </div>
 @endsection

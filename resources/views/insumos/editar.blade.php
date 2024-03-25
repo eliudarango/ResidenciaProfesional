@@ -1,4 +1,4 @@
-<!-- Vista agregar categorias -->
+<!-- Vista editar insumos -->
 @extends('layouts.sidebar')
 
 @section('content')
@@ -14,12 +14,12 @@
     <div id="main" class="main">
 
         <div class="page-meta">
-            <h5>Categoria</h5>
+            <h5>Insumos</h5>
             <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="/usuarios">Categoria</a></li>
-                    <li class="breadcrumb-item active">Registrar</li>
+                    <li class="breadcrumb-item active"><a href="/usuarios">Insumos</a></li>
+                    <li class="breadcrumb-item active">Editar</li>
                 </ol>
             </nav>
             <!-- Mensajes session -->
@@ -37,14 +37,21 @@
         <!-- Card body -->
         <div class="card custom-card">
             <div class="card-body">
-                <h5 class="card-title">Registrar categoria</h5>
-                <!-- Formulario -->
-                <form class="row g-3" action="{{ route('categorias.store') }}" method="POST">
+                <h5 class="card-title">Editar insumo</h5>
+                <!--Formulario -->
+                <form class="row g-3" action="{{ route('insumos.update', $insumo->id) }}" method="POST">
                     @csrf
+                    @method('PATCH')
                     <div class="col-12">
-                        <!-- Tipo -->
-                        <label for="inputTipo4" class="form-label">Tipo</label>
-                        <input type="text" class="form-control" name="tipo">
+                        <!-- Material -->
+                        <label for="material">Material:</label>
+                        <select name="material_id" id="material" required>
+                            @foreach ($materiales as $material)
+                                <option value="{{ $material->id }}"
+                                    {{ $articulo->material_id == $material->id ? 'selected' : '' }}>
+                                    {{ $material->categoria }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="text-center">
                         <!-- Buttons -->

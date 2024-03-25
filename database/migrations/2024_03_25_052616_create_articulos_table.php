@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inventarios', function (Blueprint $table) {
+        Schema::create('articulos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_categoria');
-            $table->foreign('id_categoria')->references('id')->on('categorias');
-            $table->string('descripcion');
+            $table->foreignId('material_id')->constrained()->onDelete('cascade');
             $table->string('numero_serie');
-            $table->boolean('estado')->nullable()->default(false);
-            $table->boolean('mantenimiento')->nullable()->default(false);
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inventarios');
+        Schema::dropIfExists('articulos');
     }
 };
