@@ -58,9 +58,9 @@ class ArticuloController extends Controller
                 
             ]);
             Articulo::create($request->all());
-            return redirect()->route('articulos.index')->with('success', 'Articulo agregada correctamente');
+            return redirect()->route('articulos.index')->with('success', 'Articulo agregado correctamente');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al agregar la articulo']);
+            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al agregar el articulo']);
         }
 
     }
@@ -98,9 +98,9 @@ class ArticuloController extends Controller
                 'material_id' => 'required'
             ]);
             $articulo->update($request->all());
-            return redirect()->route('articulos.index')->with('success', 'Articulo editada correctamente');
+            return redirect()->route('articulos.index')->with('success', 'Articulo editado correctamente');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al editar la articulo']);
+            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al editar el articulo']);
         }
     }
 
@@ -112,9 +112,9 @@ class ArticuloController extends Controller
     {
         try {
             $articulo->delete();
-            return redirect()->route('articulos.index')->with('success', 'Articulo eliminada correctamente');
+            return redirect()->route('articulos.index')->with('success', 'Articulo eliminado correctamente');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al eliminar la articulo']);
+            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al eliminar el articulo']);
         }
     }
 }

@@ -56,9 +56,9 @@ class InsumoController extends Controller
                 'material_id' => 'required'
             ]);
             Insumo::create($request->all());
-            return redirect()->route('insumos.index')->with('success', 'Insumo agregada correctamente');
+            return redirect()->route('insumos.index')->with('success', 'Insumo agregado correctamente');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al agregar la insumo']);
+            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al agregar el insumo']);
         }
 
     }
@@ -95,9 +95,9 @@ class InsumoController extends Controller
                 'material_id' => 'required'
             ]);
             $insumo->update($request->all());
-            return redirect()->route('insumos.index')->with('success', 'Insumo editada correctamente');
+            return redirect()->route('insumos.index')->with('success', 'Insumo editado correctamente');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al editar la insumo']);
+            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al editar el insumo']);
         }
     }
 
@@ -109,9 +109,9 @@ class InsumoController extends Controller
     {
         try {
             $insumo->delete();
-            return redirect()->route('insumos.index')->with('success', 'Insumo eliminada correctamente');
+            return redirect()->route('insumos.index')->with('success', 'Insumo eliminado correctamente');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al eliminar la insumo']);
+            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al eliminar el insumo']);
         }
     }
 }

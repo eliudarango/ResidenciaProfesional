@@ -35,7 +35,7 @@
                         <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
                             <form method="POST" action="{{ route('perfil.store') }}">
                                 @csrf
-                                <span>En seguida podrás cambiar tu contraseña actual del sistema, recuerda que debe 
+                                <span>*En seguida podrás cambiar tu contraseña actual del sistema, recuerda que debe 
                                     tener 8 caracteres como mínimo.</span>
 
                                 <div class="row">

@@ -41,6 +41,7 @@
                 <!-- Formulario -->
                 <form class="row g-3" action="{{ route('articulos.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <span>*Para agregar un articulo debio previamente haber agregado un material.</span>
                     <div class="col-12">
                         <!-- Categoria material -->
                         <label for="material">Categoría:</label>

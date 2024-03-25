@@ -54,9 +54,9 @@ class MaterialController extends Controller
                 'categoria' => 'required'
             ]);
             Material::create($request->all());
-            return redirect()->route('materials.index')->with('success', 'Material agregada correctamente');
+            return redirect()->route('materials.index')->with('success', 'Material agregado correctamente');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al agregar la material']);
+            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al agregar el material']);
         }
 
     }
@@ -92,9 +92,9 @@ class MaterialController extends Controller
                 'categoria' => 'required'
             ]);
             $material->update($request->all());
-            return redirect()->route('materials.index')->with('success', 'Material editada correctamente');
+            return redirect()->route('materials.index')->with('success', 'Material editado correctamente');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al editar la material']);
+            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al editar el material']);
         }
     }
 
@@ -106,9 +106,9 @@ class MaterialController extends Controller
     {
         try {
             $material->delete();
-            return redirect()->route('materials.index')->with('success', 'Material eliminada correctamente');
+            return redirect()->route('materials.index')->with('success', 'Material eliminado correctamente');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al eliminar la material']);
+            return redirect()->back()->withErrors(['error' => 'Ha ocurrido un error al eliminar el material']);
         }
     }
 }
