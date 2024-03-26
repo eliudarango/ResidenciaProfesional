@@ -25,10 +25,15 @@ class UsuarioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $usuarios = User::paginate(5);
+            $search = $request->input('search');
+            $usuarios = User::where('name', 'LIKE', "%{$search}%")
+                ->orWhere('email', 'LIKE', "%{$search}%")
+                ->orWhere('telefono', 'LIKE', "%{$search}%")
+                ->paginate(10);
+
             return view('usuarios.index', compact('usuarios'));
         } catch (\Throwable $th) {
         }
@@ -106,7 +111,7 @@ class UsuarioController extends Controller
             ]);
             $input = $request->all();
 
-            if (!empty($input['password'])) {
+            if (!empty ($input['password'])) {
                 $input['password'] = Hash::make($input['password']);
             } else {
                 $input = Arr::except($input, array('password'));
